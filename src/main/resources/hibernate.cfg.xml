@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="connection.url">jdbc:mysql://test.hellowd.com:20003/sf_testbed</property>
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+    <mapping class="com.hellowd.core.model.entity.CategoryEntity"/>
+    <mapping class="com.hellowd.core.model.entity.CategoryStoreEntity"/>
+    <mapping class="com.hellowd.core.model.entity.MappingMenuOptionEntity"/>
+    <mapping class="com.hellowd.core.model.entity.MenuEntity"/>
+    <mapping class="com.hellowd.core.model.entity.OptionEntity"/>
+    <mapping class="com.hellowd.core.model.entity.OptionDetailEntity"/>
+    <mapping class="com.hellowd.core.model.entity.OrderEntity"/>
+    <mapping class="com.hellowd.core.model.entity.OrderCommissionEntity"/>
+    <mapping class="com.hellowd.core.model.entity.OrderDeliveryEntity"/>
+    <mapping class="com.hellowd.core.model.entity.OrderPushTtsEntity"/>
+    <mapping class="com.hellowd.core.model.entity.StatisticsOrderDailyEntity"/>
+    <mapping class="com.hellowd.core.model.entity.StatisticsUserLoginEntity"/>
+    <mapping class="com.hellowd.core.model.entity.StoreEntity"/>
+    <mapping class="com.hellowd.core.model.entity.StoreCidEntity"/>
+    <mapping class="com.hellowd.core.model.entity.StoreCmsEntity"/>
+    <mapping class="com.hellowd.core.model.entity.StoreFloorEntity"/>
+    <mapping class="com.hellowd.core.model.entity.StoreMobileWebEntity"/>
+    <mapping class="com.hellowd.core.model.entity.StoreOperationEntity"/>
+    <mapping class="com.hellowd.core.model.entity.StoreOwnerEntity"/>
+    <mapping class="com.hellowd.core.model.entity.StoreOwnerAddressEntity"/>
+    <mapping class="com.hellowd.core.model.entity.StoreSellerEntity"/>
+    <mapping class="com.hellowd.core.model.entity.StoreTableEntity"/>
+    <mapping class="com.hellowd.core.model.entity.UserAdminEntity"/>
+    <mapping class="com.hellowd.core.model.entity.UserAdminRoleEntity"/>
+    <mapping class="com.hellowd.core.model.entity.UserCidEntity"/>
+    <mapping class="com.hellowd.core.model.entity.UserCidAddressEntity"/>
+    <mapping class="com.hellowd.core.model.entity.UserEmployeeEntity"/>
+    <mapping class="com.hellowd.core.model.entity.UserManagerEntity"/>
+    <mapping class="com.hellowd.core.model.entity.UserManagerBusinessEntity"/>
+    <mapping class="com.hellowd.core.model.entity.UserPosEntity"/>
+  </session-factory>
+</hibernate-configuration>
