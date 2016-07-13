@@ -1,4 +1,4 @@
-package com.hellowd.core.model.entity.relation;//package com.hellowd.model.entity;
+package com.hellowd.core.model.entity;//package com.hellowd.model.entity;
 //
 //import javax.persistence.Basic;
 //import javax.persistence.Column;
