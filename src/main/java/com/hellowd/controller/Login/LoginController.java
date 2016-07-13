@@ -40,7 +40,7 @@ public class LoginController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ApiOperation(value = "사용자 로그인 (API토큰 필요없음)", notes = "필수값: principal, (EMAIL의 경우) credentials")
-    public ApiResult authentication(@RequestBody AuthenticationRequest authReqeuest) throws UnauthorizedException {
+    public LoginRes authentication(@RequestBody AuthenticationRequest authReqeuest) throws UnauthorizedException {
         try {
             Authentication authentication = new UserManagerAuthenticationToken(authReqeuest);
             authentication = authenticationManager.authenticate(authentication);
@@ -49,7 +49,7 @@ public class LoginController {
             UserManagerEntity userManagerEntity = (UserManagerEntity) authentication.getDetails();
             String token = jwt.generateToken(claims(userManagerEntity, authentication.getAuthorities()));
 
-            return new ApiResult(true, HttpStatus.OK, null, new LoginRes(userManagerEntity.getSeq(), token));
+            return new LoginRes(new ApiResult(true, HttpStatus.OK), userManagerEntity.getSeq(), token);
         } catch (AuthenticationException e) {
             throw new UnauthorizedException(e.getMessage());
         }

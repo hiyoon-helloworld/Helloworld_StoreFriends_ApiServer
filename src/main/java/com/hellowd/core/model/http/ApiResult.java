@@ -16,7 +16,7 @@ import org.springframework.http.HttpStatus;
 @NoArgsConstructor
 public class ApiResult<T> {
 
-    private boolean isSuccss;
+    private boolean isSuccess;
     private int status;
     private String message;
     private T result;
@@ -34,7 +34,7 @@ public class ApiResult<T> {
     }
 
     private void ApiResult(final boolean isSuccess, final HttpStatus status, final String message, final T result) {
-        this.isSuccss = isSuccess;
+        this.isSuccess = isSuccess;
         this.status = status.value();
         this.message = message;
         this.result = result;

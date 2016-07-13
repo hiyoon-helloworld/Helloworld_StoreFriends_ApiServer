@@ -1,9 +1,6 @@
 package com.hellowd.core.model.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
 /**
  * Created by Helloworld
@@ -24,7 +21,7 @@ public class CategoryStoreEntity {
     private String delYn;
 
     @Id
-    @Column(name = "seq")
+    @Column(name = "seq", nullable = false)
     public long getSeq() {
         return seq;
     }
@@ -34,7 +31,7 @@ public class CategoryStoreEntity {
     }
 
     @Basic
-    @Column(name = "category_seq")
+    @Column(name = "category_seq", nullable = false)
     public long getCategorySeq() {
         return categorySeq;
     }
@@ -44,7 +41,7 @@ public class CategoryStoreEntity {
     }
 
     @Basic
-    @Column(name = "owner_seq")
+    @Column(name = "owner_seq", nullable = true)
     public Long getOwnerSeq() {
         return ownerSeq;
     }
@@ -54,7 +51,7 @@ public class CategoryStoreEntity {
     }
 
     @Basic
-    @Column(name = "store_seq")
+    @Column(name = "store_seq", nullable = true)
     public Long getStoreSeq() {
         return storeSeq;
     }
@@ -64,7 +61,7 @@ public class CategoryStoreEntity {
     }
 
     @Basic
-    @Column(name = "name")
+    @Column(name = "name", nullable = true, length = 20)
     public String getName() {
         return name;
     }
@@ -74,7 +71,7 @@ public class CategoryStoreEntity {
     }
 
     @Basic
-    @Column(name = "del_yn", columnDefinition = "CHAR(1)")
+    @Column(name = "del_yn", columnDefinition = "CHAR(1)", nullable = true, length = 1)
     public String getDelYn() {
         return delYn;
     }

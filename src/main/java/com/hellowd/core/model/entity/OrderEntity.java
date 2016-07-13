@@ -1,8 +1,6 @@
 package com.hellowd.core.model.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
@@ -18,9 +16,33 @@ import java.sql.Timestamp;
 //@javax.persistence.Table(name = "order")
 public class OrderEntity {
     private long seq;
+    private long sellerSeq;
+    private long storeSeq;
+    private long cidSeq;
+    private Long floorSeq;
+    private Long tableSeq;
+    private long orderNo;
+    private String paymentType;
+    private String statusOrder;
+    private String statusRefund;
+    private String paynowOrderYn;
+    private String paynowMemo;
+    private String paynowAdvance;
+    private String orderPath;
+    private String orderRejectMessage;
+    private Integer totalPrice;
+    private String discountType;
+    private Integer discountPrice;
+    private BigDecimal discountRate;
+    private Integer usePoint;
+    private Integer paymentPrice;
+    private Integer savePoint;
+    private String nopayYn;
+    private Timestamp moddate;
+    private Timestamp regdate;
 
     @Id
-    @javax.persistence.Column(name = "seq")
+    @Column(name = "seq")
     public long getSeq() {
         return seq;
     }
@@ -29,10 +51,8 @@ public class OrderEntity {
         this.seq = seq;
     }
 
-    private long sellerSeq;
-
     @Basic
-    @javax.persistence.Column(name = "seller_seq")
+    @Column(name = "seller_seq")
     public long getSellerSeq() {
         return sellerSeq;
     }
@@ -41,10 +61,8 @@ public class OrderEntity {
         this.sellerSeq = sellerSeq;
     }
 
-    private long storeSeq;
-
     @Basic
-    @javax.persistence.Column(name = "store_seq")
+    @Column(name = "store_seq")
     public long getStoreSeq() {
         return storeSeq;
     }
@@ -53,10 +71,8 @@ public class OrderEntity {
         this.storeSeq = storeSeq;
     }
 
-    private long cidSeq;
-
     @Basic
-    @javax.persistence.Column(name = "cid_seq")
+    @Column(name = "cid_seq")
     public long getCidSeq() {
         return cidSeq;
     }
@@ -65,10 +81,8 @@ public class OrderEntity {
         this.cidSeq = cidSeq;
     }
 
-    private Long floorSeq;
-
     @Basic
-    @javax.persistence.Column(name = "floor_seq")
+    @Column(name = "floor_seq")
     public Long getFloorSeq() {
         return floorSeq;
     }
@@ -77,10 +91,8 @@ public class OrderEntity {
         this.floorSeq = floorSeq;
     }
 
-    private Long tableSeq;
-
     @Basic
-    @javax.persistence.Column(name = "table_seq")
+    @Column(name = "table_seq")
     public Long getTableSeq() {
         return tableSeq;
     }
@@ -89,10 +101,8 @@ public class OrderEntity {
         this.tableSeq = tableSeq;
     }
 
-    private long orderNo;
-
     @Basic
-    @javax.persistence.Column(name = "order_no")
+    @Column(name = "order_no")
     public long getOrderNo() {
         return orderNo;
     }
@@ -101,10 +111,8 @@ public class OrderEntity {
         this.orderNo = orderNo;
     }
 
-    private String paymentType;
-
     @Basic
-    @javax.persistence.Column(name = "payment_type", columnDefinition = "CHAR(1)")
+    @Column(name = "payment_type", columnDefinition = "CHAR(1)")
     public String getPaymentType() {
         return paymentType;
     }
@@ -113,10 +121,8 @@ public class OrderEntity {
         this.paymentType = paymentType;
     }
 
-    private String statusOrder;
-
     @Basic
-    @javax.persistence.Column(name = "status_order", columnDefinition = "CHAR(1)")
+    @Column(name = "status_order", columnDefinition = "CHAR(1)")
     public String getStatusOrder() {
         return statusOrder;
     }
@@ -125,10 +131,8 @@ public class OrderEntity {
         this.statusOrder = statusOrder;
     }
 
-    private String statusRefund;
-
     @Basic
-    @javax.persistence.Column(name = "status_refund", columnDefinition = "CHAR(1)")
+    @Column(name = "status_refund", columnDefinition = "CHAR(1)")
     public String getStatusRefund() {
         return statusRefund;
     }
@@ -137,10 +141,8 @@ public class OrderEntity {
         this.statusRefund = statusRefund;
     }
 
-    private String paynowOrderYn;
-
     @Basic
-    @javax.persistence.Column(name = "paynow_order_yn", columnDefinition = "CHAR(1)")
+    @Column(name = "paynow_order_yn", columnDefinition = "CHAR(1)")
     public String getPaynowOrderYn() {
         return paynowOrderYn;
     }
@@ -149,10 +151,8 @@ public class OrderEntity {
         this.paynowOrderYn = paynowOrderYn;
     }
 
-    private String paynowMemo;
-
     @Basic
-    @javax.persistence.Column(name = "paynow_memo")
+    @Column(name = "paynow_memo")
     public String getPaynowMemo() {
         return paynowMemo;
     }
@@ -161,10 +161,8 @@ public class OrderEntity {
         this.paynowMemo = paynowMemo;
     }
 
-    private String paynowAdvance;
-
     @Basic
-    @javax.persistence.Column(name = "paynow_advance", columnDefinition = "CHAR(1)")
+    @Column(name = "paynow_advance", columnDefinition = "CHAR(1)")
     public String getPaynowAdvance() {
         return paynowAdvance;
     }
@@ -173,10 +171,8 @@ public class OrderEntity {
         this.paynowAdvance = paynowAdvance;
     }
 
-    private String orderPath;
-
     @Basic
-    @javax.persistence.Column(name = "order_path", columnDefinition = "CHAR(1)")
+    @Column(name = "order_path", columnDefinition = "CHAR(1)")
     public String getOrderPath() {
         return orderPath;
     }
@@ -185,10 +181,8 @@ public class OrderEntity {
         this.orderPath = orderPath;
     }
 
-    private String orderRejectMessage;
-
     @Basic
-    @javax.persistence.Column(name = "order_reject_message")
+    @Column(name = "order_reject_message")
     public String getOrderRejectMessage() {
         return orderRejectMessage;
     }
@@ -197,10 +191,8 @@ public class OrderEntity {
         this.orderRejectMessage = orderRejectMessage;
     }
 
-    private Integer totalPrice;
-
     @Basic
-    @javax.persistence.Column(name = "total_price")
+    @Column(name = "total_price")
     public Integer getTotalPrice() {
         return totalPrice;
     }
@@ -209,10 +201,8 @@ public class OrderEntity {
         this.totalPrice = totalPrice;
     }
 
-    private String discountType;
-
     @Basic
-    @javax.persistence.Column(name = "discount_type", columnDefinition = "CHAR(1)")
+    @Column(name = "discount_type", columnDefinition = "CHAR(1)")
     public String getDiscountType() {
         return discountType;
     }
@@ -221,10 +211,8 @@ public class OrderEntity {
         this.discountType = discountType;
     }
 
-    private Integer discountPrice;
-
     @Basic
-    @javax.persistence.Column(name = "discount_price")
+    @Column(name = "discount_price")
     public Integer getDiscountPrice() {
         return discountPrice;
     }
@@ -233,10 +221,8 @@ public class OrderEntity {
         this.discountPrice = discountPrice;
     }
 
-    private BigDecimal discountRate;
-
     @Basic
-    @javax.persistence.Column(name = "discount_rate")
+    @Column(name = "discount_rate")
     public BigDecimal getDiscountRate() {
         return discountRate;
     }
@@ -245,10 +231,8 @@ public class OrderEntity {
         this.discountRate = discountRate;
     }
 
-    private Integer usePoint;
-
     @Basic
-    @javax.persistence.Column(name = "use_point")
+    @Column(name = "use_point")
     public Integer getUsePoint() {
         return usePoint;
     }
@@ -257,10 +241,8 @@ public class OrderEntity {
         this.usePoint = usePoint;
     }
 
-    private Integer paymentPrice;
-
     @Basic
-    @javax.persistence.Column(name = "payment_price")
+    @Column(name = "payment_price")
     public Integer getPaymentPrice() {
         return paymentPrice;
     }
@@ -269,10 +251,8 @@ public class OrderEntity {
         this.paymentPrice = paymentPrice;
     }
 
-    private Integer savePoint;
-
     @Basic
-    @javax.persistence.Column(name = "save_point")
+    @Column(name = "save_point")
     public Integer getSavePoint() {
         return savePoint;
     }
@@ -281,10 +261,8 @@ public class OrderEntity {
         this.savePoint = savePoint;
     }
 
-    private String nopayYn;
-
     @Basic
-    @javax.persistence.Column(name = "nopay_yn", columnDefinition = "CHAR(1)")
+    @Column(name = "nopay_yn", columnDefinition = "CHAR(1)")
     public String getNopayYn() {
         return nopayYn;
     }
@@ -293,10 +271,8 @@ public class OrderEntity {
         this.nopayYn = nopayYn;
     }
 
-    private Timestamp moddate;
-
     @Basic
-    @javax.persistence.Column(name = "moddate")
+    @Column(name = "moddate")
     public Timestamp getModdate() {
         return moddate;
     }
@@ -305,10 +281,8 @@ public class OrderEntity {
         this.moddate = moddate;
     }
 
-    private Timestamp regdate;
-
     @Basic
-    @javax.persistence.Column(name = "regdate")
+    @Column(name = "regdate")
     public Timestamp getRegdate() {
         return regdate;
     }

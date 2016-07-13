@@ -3,10 +3,7 @@ package com.hellowd.core.model.entity;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
@@ -17,7 +14,6 @@ import java.sql.Timestamp;
  * 해당 클래스에 대한 기능 설명
  */
 @MappedSuperclass
-
 //@Entity
 //@Table(name = "user_pos")
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
@@ -28,6 +24,7 @@ public class UserPosEntity {
     private String macAddress;
     private String delYn;
     private Timestamp regdate;
+    private long ownerSeq;
 
     @Id
     @Column(name = "seq")
@@ -87,6 +84,16 @@ public class UserPosEntity {
 
     public void setRegdate(Timestamp regdate) {
         this.regdate = regdate;
+    }
+
+    @Basic
+    @Column(name = "owner_seq")
+    public long getOwnerSeq() {
+        return ownerSeq;
+    }
+
+    public void setOwnerSeq(long ownerSeq) {
+        this.ownerSeq = ownerSeq;
     }
 
     @Override

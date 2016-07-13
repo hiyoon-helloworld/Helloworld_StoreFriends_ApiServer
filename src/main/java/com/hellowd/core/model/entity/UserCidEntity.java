@@ -1,8 +1,6 @@
 package com.hellowd.core.model.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
@@ -17,9 +15,27 @@ import java.sql.Timestamp;
 //@javax.persistence.Table(name = "user_cid")
 public class UserCidEntity {
     private long seq;
+    private long storeSeq;
+    private String phone;
+    private String phoneEtc;
+    private String postcode;
+    private String zonecode;
+    private String bcode;
+    private String bname;
+    private String bldgCode;
+    private String bldgName;
+    private String postAddress;
+    private String legacyPostAddress;
+    private String detailPostAddress;
+    private String gpsLat;
+    private String gpsLng;
+    private String memo;
+    private int nopaySum;
+    private Timestamp moddate;
+    private Timestamp regdate;
 
     @Id
-    @javax.persistence.Column(name = "seq")
+    @Column(name = "seq")
     public long getSeq() {
         return seq;
     }
@@ -28,10 +44,8 @@ public class UserCidEntity {
         this.seq = seq;
     }
 
-    private long storeSeq;
-
     @Basic
-    @javax.persistence.Column(name = "store_seq")
+    @Column(name = "store_seq")
     public long getStoreSeq() {
         return storeSeq;
     }
@@ -40,10 +54,8 @@ public class UserCidEntity {
         this.storeSeq = storeSeq;
     }
 
-    private String phone;
-
     @Basic
-    @javax.persistence.Column(name = "phone")
+    @Column(name = "phone")
     public String getPhone() {
         return phone;
     }
@@ -52,10 +64,8 @@ public class UserCidEntity {
         this.phone = phone;
     }
 
-    private String phoneEtc;
-
     @Basic
-    @javax.persistence.Column(name = "phone_etc")
+    @Column(name = "phone_etc")
     public String getPhoneEtc() {
         return phoneEtc;
     }
@@ -64,10 +74,8 @@ public class UserCidEntity {
         this.phoneEtc = phoneEtc;
     }
 
-    private String postcode;
-
     @Basic
-    @javax.persistence.Column(name = "postcode")
+    @Column(name = "postcode")
     public String getPostcode() {
         return postcode;
     }
@@ -76,10 +84,8 @@ public class UserCidEntity {
         this.postcode = postcode;
     }
 
-    private String zonecode;
-
     @Basic
-    @javax.persistence.Column(name = "zonecode")
+    @Column(name = "zonecode")
     public String getZonecode() {
         return zonecode;
     }
@@ -88,10 +94,8 @@ public class UserCidEntity {
         this.zonecode = zonecode;
     }
 
-    private String bcode;
-
     @Basic
-    @javax.persistence.Column(name = "bcode")
+    @Column(name = "bcode")
     public String getBcode() {
         return bcode;
     }
@@ -100,10 +104,8 @@ public class UserCidEntity {
         this.bcode = bcode;
     }
 
-    private String bname;
-
     @Basic
-    @javax.persistence.Column(name = "bname")
+    @Column(name = "bname")
     public String getBname() {
         return bname;
     }
@@ -112,10 +114,8 @@ public class UserCidEntity {
         this.bname = bname;
     }
 
-    private String bldgCode;
-
     @Basic
-    @javax.persistence.Column(name = "bldg_code")
+    @Column(name = "bldg_code")
     public String getBldgCode() {
         return bldgCode;
     }
@@ -124,10 +124,8 @@ public class UserCidEntity {
         this.bldgCode = bldgCode;
     }
 
-    private String bldgName;
-
     @Basic
-    @javax.persistence.Column(name = "bldg_name")
+    @Column(name = "bldg_name")
     public String getBldgName() {
         return bldgName;
     }
@@ -136,10 +134,8 @@ public class UserCidEntity {
         this.bldgName = bldgName;
     }
 
-    private String postAddress;
-
     @Basic
-    @javax.persistence.Column(name = "post_address")
+    @Column(name = "post_address")
     public String getPostAddress() {
         return postAddress;
     }
@@ -148,10 +144,8 @@ public class UserCidEntity {
         this.postAddress = postAddress;
     }
 
-    private String legacyPostAddress;
-
     @Basic
-    @javax.persistence.Column(name = "legacy_post_address")
+    @Column(name = "legacy_post_address")
     public String getLegacyPostAddress() {
         return legacyPostAddress;
     }
@@ -160,10 +154,8 @@ public class UserCidEntity {
         this.legacyPostAddress = legacyPostAddress;
     }
 
-    private String detailPostAddress;
-
     @Basic
-    @javax.persistence.Column(name = "detail_post_address")
+    @Column(name = "detail_post_address")
     public String getDetailPostAddress() {
         return detailPostAddress;
     }
@@ -172,10 +164,8 @@ public class UserCidEntity {
         this.detailPostAddress = detailPostAddress;
     }
 
-    private String gpsLat;
-
     @Basic
-    @javax.persistence.Column(name = "gps_lat")
+    @Column(name = "gps_lat")
     public String getGpsLat() {
         return gpsLat;
     }
@@ -184,10 +174,8 @@ public class UserCidEntity {
         this.gpsLat = gpsLat;
     }
 
-    private String gpsLng;
-
     @Basic
-    @javax.persistence.Column(name = "gps_lng")
+    @Column(name = "gps_lng")
     public String getGpsLng() {
         return gpsLng;
     }
@@ -196,10 +184,8 @@ public class UserCidEntity {
         this.gpsLng = gpsLng;
     }
 
-    private String memo;
-
     @Basic
-    @javax.persistence.Column(name = "memo")
+    @Column(name = "memo")
     public String getMemo() {
         return memo;
     }
@@ -208,10 +194,8 @@ public class UserCidEntity {
         this.memo = memo;
     }
 
-    private int nopaySum;
-
     @Basic
-    @javax.persistence.Column(name = "nopay_sum")
+    @Column(name = "nopay_sum")
     public int getNopaySum() {
         return nopaySum;
     }
@@ -220,10 +204,8 @@ public class UserCidEntity {
         this.nopaySum = nopaySum;
     }
 
-    private Timestamp moddate;
-
     @Basic
-    @javax.persistence.Column(name = "moddate")
+    @Column(name = "moddate")
     public Timestamp getModdate() {
         return moddate;
     }
@@ -232,10 +214,8 @@ public class UserCidEntity {
         this.moddate = moddate;
     }
 
-    private Timestamp regdate;
-
     @Basic
-    @javax.persistence.Column(name = "regdate")
+    @Column(name = "regdate")
     public Timestamp getRegdate() {
         return regdate;
     }

@@ -27,4 +27,9 @@ public class UserManagerRelation extends UserManagerEntity {
     @Fetch(FetchMode.JOIN)
     @Access(AccessType.FIELD)
     private List<UserPosRelation> userPosList;
+
+    @OneToMany(mappedBy = "userManager", fetch = FetchType.LAZY)
+    @Fetch(FetchMode.JOIN)
+    @Access(AccessType.FIELD)
+    private List<UserEmployeeRelation> userEmployeeList;
 }

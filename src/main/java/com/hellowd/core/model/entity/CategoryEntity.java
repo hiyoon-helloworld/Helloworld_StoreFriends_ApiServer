@@ -1,9 +1,6 @@
 package com.hellowd.core.model.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
 /**
  * Created by Helloworld
@@ -21,7 +18,7 @@ public class CategoryEntity {
     private String delYn;
 
     @Id
-    @Column(name = "seq")
+    @Column(name = "seq", nullable = false)
     public long getSeq() {
         return seq;
     }
@@ -31,7 +28,7 @@ public class CategoryEntity {
     }
 
     @Basic
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, length = 20)
     public String getName() {
         return name;
     }
@@ -41,7 +38,7 @@ public class CategoryEntity {
     }
 
     @Basic
-    @Column(name = "del_yn", columnDefinition = "CHAR(1)")
+    @Column(name = "del_yn", columnDefinition = "CHAR(1)", nullable = false, length = 1)
     public String getDelYn() {
         return delYn;
     }

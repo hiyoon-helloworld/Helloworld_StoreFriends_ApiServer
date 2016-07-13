@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.hellowd.core.model.entity.UserManagerEntity;
 import com.hellowd.core.model.entity.UserPosEntity;
+import com.hellowd.core.model.entity.relation.UserEmployeeRelation;
 import com.hellowd.core.model.entity.relation.UserManagerRelation;
 import com.hellowd.core.model.entity.relation.UserPosRelation;
 import com.hellowd.core.model.http.ApiResult;
@@ -25,15 +26,19 @@ public class UserManagerRes extends ApiResult {
     private UserManagerRelation userManager;
 
     public UserManagerRes(final ApiResult apiResult, final UserManagerRelation userManagerRelation) {
-        super.setSuccss(apiResult.isSuccss());
+
+        // API Result 값을 셋팅합니다.
+        super.setSuccess(apiResult.isSuccess());
         super.setStatus(apiResult.getStatus());
         super.setMessage(apiResult.getMessage());
 
+        // User Manager 값을 셋팅합니다.
         userManager = new UserManagerRelation();
         userManager.setSeq(userManagerRelation.getSeq());
         userManager.setId(userManagerRelation.getId());
 
-        List<UserPosRelation> userPorList = new ArrayList<>();
+        // User Pos 값을 셋팅합니다.
+        List<UserPosRelation> userPosList = new ArrayList<>();
         List<UserPosRelation> userPorRelationList = userManagerRelation.getUserPosList();
         for (UserPosRelation userPosRelation : userPorRelationList) {
             UserPosRelation userPos = new UserPosRelation();
@@ -41,9 +46,21 @@ public class UserManagerRes extends ApiResult {
             userPos.setManagerSeq(userPosRelation.getManagerSeq());
             userPos.setType(userPosRelation.getType());
             userPos.setMacAddress(userPosRelation.getMacAddress());
-            userPorList.add(userPos);
+            userPosList.add(userPos);
         }
-        userManager.setUserPosList(userPorList);
+        userManager.setUserPosList(userPosList);
+
+        // User Employee 값을 셋팅합니다.
+        List<UserEmployeeRelation> userEmployeeList = new ArrayList<>();
+        List<UserEmployeeRelation> userEmployeeRelationList = userManagerRelation.getUserEmployeeList();
+        for (UserEmployeeRelation userEmployeeRelation : userEmployeeRelationList) {
+            UserEmployeeRelation userEmployee = new UserEmployeeRelation();
+            userEmployee.setSeq(userEmployeeRelation.getSeq());
+            userEmployee.setName(userEmployeeRelation.getName());
+            userEmployee.setType(userEmployeeRelation.getType());
+            userEmployeeList.add(userEmployee);
+        }
+        userManager.setUserEmployeeList(userEmployeeList);
     }
 
 }

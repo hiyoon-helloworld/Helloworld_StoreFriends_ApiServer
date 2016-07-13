@@ -1,8 +1,6 @@
 package com.hellowd.core.model.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
@@ -17,9 +15,29 @@ import java.sql.Timestamp;
 //@javax.persistence.Table(name = "store")
 public class StoreEntity {
     private long seq;
+    private long ownerSeq;
+    private long sellerSeq;
+    private String name;
+    private String phone;
+    private String cellPhone;
+    private String virtualPhone;
+    private String storeType;
+    private String ttsUseYn;
+    private String ttsNotifyUseYn;
+    private String ttsPhone;
+    private String ttsPhoneEtc;
+    private String category;
+    private String pushServerUrl;
+    private Integer delvMinPrice;
+    private String delvAbleRegionAvbbv;
+    private String logoImgUrl;
+    private String paperImgUrl;
+    private String useYn;
+    private String delYn;
+    private Timestamp regdate;
 
     @Id
-    @javax.persistence.Column(name = "seq")
+    @Column(name = "seq")
     public long getSeq() {
         return seq;
     }
@@ -28,10 +46,8 @@ public class StoreEntity {
         this.seq = seq;
     }
 
-    private long ownerSeq;
-
     @Basic
-    @javax.persistence.Column(name = "owner_seq")
+    @Column(name = "owner_seq")
     public long getOwnerSeq() {
         return ownerSeq;
     }
@@ -40,10 +56,8 @@ public class StoreEntity {
         this.ownerSeq = ownerSeq;
     }
 
-    private long sellerSeq;
-
     @Basic
-    @javax.persistence.Column(name = "seller_seq")
+    @Column(name = "seller_seq")
     public long getSellerSeq() {
         return sellerSeq;
     }
@@ -52,10 +66,8 @@ public class StoreEntity {
         this.sellerSeq = sellerSeq;
     }
 
-    private String name;
-
     @Basic
-    @javax.persistence.Column(name = "name")
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -64,10 +76,8 @@ public class StoreEntity {
         this.name = name;
     }
 
-    private String phone;
-
     @Basic
-    @javax.persistence.Column(name = "phone")
+    @Column(name = "phone")
     public String getPhone() {
         return phone;
     }
@@ -76,10 +86,8 @@ public class StoreEntity {
         this.phone = phone;
     }
 
-    private String cellPhone;
-
     @Basic
-    @javax.persistence.Column(name = "cell_phone")
+    @Column(name = "cell_phone")
     public String getCellPhone() {
         return cellPhone;
     }
@@ -88,10 +96,8 @@ public class StoreEntity {
         this.cellPhone = cellPhone;
     }
 
-    private String virtualPhone;
-
     @Basic
-    @javax.persistence.Column(name = "virtual_phone")
+    @Column(name = "virtual_phone")
     public String getVirtualPhone() {
         return virtualPhone;
     }
@@ -100,10 +106,8 @@ public class StoreEntity {
         this.virtualPhone = virtualPhone;
     }
 
-    private String storeType;
-
     @Basic
-    @javax.persistence.Column(name = "store_type", columnDefinition = "CHAR(1)")
+    @Column(name = "store_type", columnDefinition = "CHAR(1)")
     public String getStoreType() {
         return storeType;
     }
@@ -112,10 +116,8 @@ public class StoreEntity {
         this.storeType = storeType;
     }
 
-    private String ttsUseYn;
-
     @Basic
-    @javax.persistence.Column(name = "tts_use_yn", columnDefinition = "CHAR(1)")
+    @Column(name = "tts_use_yn", columnDefinition = "CHAR(1)")
     public String getTtsUseYn() {
         return ttsUseYn;
     }
@@ -124,10 +126,8 @@ public class StoreEntity {
         this.ttsUseYn = ttsUseYn;
     }
 
-    private String ttsNotifyUseYn;
-
     @Basic
-    @javax.persistence.Column(name = "tts_notify_use_yn", columnDefinition = "CHAR(1)")
+    @Column(name = "tts_notify_use_yn", columnDefinition = "CHAR(1)")
     public String getTtsNotifyUseYn() {
         return ttsNotifyUseYn;
     }
@@ -136,10 +136,8 @@ public class StoreEntity {
         this.ttsNotifyUseYn = ttsNotifyUseYn;
     }
 
-    private String ttsPhone;
-
     @Basic
-    @javax.persistence.Column(name = "tts_phone")
+    @Column(name = "tts_phone")
     public String getTtsPhone() {
         return ttsPhone;
     }
@@ -148,10 +146,8 @@ public class StoreEntity {
         this.ttsPhone = ttsPhone;
     }
 
-    private String ttsPhoneEtc;
-
     @Basic
-    @javax.persistence.Column(name = "tts_phone_etc")
+    @Column(name = "tts_phone_etc")
     public String getTtsPhoneEtc() {
         return ttsPhoneEtc;
     }
@@ -160,10 +156,8 @@ public class StoreEntity {
         this.ttsPhoneEtc = ttsPhoneEtc;
     }
 
-    private String category;
-
     @Basic
-    @javax.persistence.Column(name = "category", columnDefinition = "CHAR(2)")
+    @Column(name = "category", columnDefinition = "CHAR(2)")
     public String getCategory() {
         return category;
     }
@@ -172,10 +166,8 @@ public class StoreEntity {
         this.category = category;
     }
 
-    private String pushServerUrl;
-
     @Basic
-    @javax.persistence.Column(name = "push_server_url")
+    @Column(name = "push_server_url")
     public String getPushServerUrl() {
         return pushServerUrl;
     }
@@ -184,10 +176,8 @@ public class StoreEntity {
         this.pushServerUrl = pushServerUrl;
     }
 
-    private Integer delvMinPrice;
-
     @Basic
-    @javax.persistence.Column(name = "delv_min_price")
+    @Column(name = "delv_min_price")
     public Integer getDelvMinPrice() {
         return delvMinPrice;
     }
@@ -196,10 +186,8 @@ public class StoreEntity {
         this.delvMinPrice = delvMinPrice;
     }
 
-    private String delvAbleRegionAvbbv;
-
     @Basic
-    @javax.persistence.Column(name = "delv_able_region_avbbv")
+    @Column(name = "delv_able_region_avbbv")
     public String getDelvAbleRegionAvbbv() {
         return delvAbleRegionAvbbv;
     }
@@ -208,10 +196,8 @@ public class StoreEntity {
         this.delvAbleRegionAvbbv = delvAbleRegionAvbbv;
     }
 
-    private String logoImgUrl;
-
     @Basic
-    @javax.persistence.Column(name = "logo_img_url")
+    @Column(name = "logo_img_url")
     public String getLogoImgUrl() {
         return logoImgUrl;
     }
@@ -220,10 +206,8 @@ public class StoreEntity {
         this.logoImgUrl = logoImgUrl;
     }
 
-    private String paperImgUrl;
-
     @Basic
-    @javax.persistence.Column(name = "paper_img_url")
+    @Column(name = "paper_img_url")
     public String getPaperImgUrl() {
         return paperImgUrl;
     }
@@ -232,10 +216,8 @@ public class StoreEntity {
         this.paperImgUrl = paperImgUrl;
     }
 
-    private String useYn;
-
     @Basic
-    @javax.persistence.Column(name = "use_yn", columnDefinition = "CHAR(1)")
+    @Column(name = "use_yn", columnDefinition = "CHAR(1)")
     public String getUseYn() {
         return useYn;
     }
@@ -244,10 +226,8 @@ public class StoreEntity {
         this.useYn = useYn;
     }
 
-    private String delYn;
-
     @Basic
-    @javax.persistence.Column(name = "del_yn", columnDefinition = "CHAR(1)")
+    @Column(name = "del_yn", columnDefinition = "CHAR(1)")
     public String getDelYn() {
         return delYn;
     }
@@ -256,10 +236,8 @@ public class StoreEntity {
         this.delYn = delYn;
     }
 
-    private Timestamp regdate;
-
     @Basic
-    @javax.persistence.Column(name = "regdate")
+    @Column(name = "regdate")
     public Timestamp getRegdate() {
         return regdate;
     }

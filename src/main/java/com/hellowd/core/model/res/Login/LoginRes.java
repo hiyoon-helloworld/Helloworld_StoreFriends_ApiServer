@@ -1,5 +1,7 @@
 package com.hellowd.core.model.res.Login;
 
+import com.hellowd.core.model.entity.relation.UserManagerRelation;
+import com.hellowd.core.model.http.ApiResult;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -12,7 +14,16 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
-public class LoginRes {
+public class LoginRes extends ApiResult {
     private long seq;
     private String apiToken;
+
+    public LoginRes(final ApiResult apiResult, final long seq, final String apiToken) {
+        super.setSuccess(apiResult.isSuccess());
+        super.setStatus(apiResult.getStatus());
+        super.setMessage(apiResult.getMessage());
+
+        this.setSeq(seq);
+        this.setApiToken(apiToken);
+    }
 }

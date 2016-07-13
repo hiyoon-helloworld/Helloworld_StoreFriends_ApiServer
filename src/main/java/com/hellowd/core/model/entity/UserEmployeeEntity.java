@@ -1,9 +1,6 @@
 package com.hellowd.core.model.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
@@ -29,6 +26,7 @@ public class UserEmployeeEntity {
     private String memo;
     private String delYn;
     private Timestamp regdate;
+    private long managerSeq;
 
     @Id
     @Column(name = "seq")
@@ -148,6 +146,16 @@ public class UserEmployeeEntity {
 
     public void setRegdate(Timestamp regdate) {
         this.regdate = regdate;
+    }
+
+    @Basic
+    @Column(name = "manager_seq")
+    public long getManagerSeq() {
+        return managerSeq;
+    }
+
+    public void setManagerSeq(long managerSeq) {
+        this.managerSeq = managerSeq;
     }
 
     @Override
