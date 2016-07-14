@@ -7,7 +7,7 @@ import java.util.Collection;
 
 import com.hellowd.core.exception.NotFoundException;
 import com.hellowd.core.model.entity.UserManagerEntity;
-import com.hellowd.core.model.req.security.AuthenticationRequest;
+import com.hellowd.core.model.http.req.security.AuthenticationRequest;
 import com.hellowd.service.login.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

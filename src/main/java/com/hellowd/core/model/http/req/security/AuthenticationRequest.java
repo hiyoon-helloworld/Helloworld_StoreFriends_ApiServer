@@ -1,7 +1,7 @@
 /**
  * @Author yboklee (lyb1495@helloworlds.co.kr)
  */
-package com.hellowd.core.model.req.security;
+package com.hellowd.core.model.http.req.security;
 
 import com.hellowd.core.model.type.Device;
 import io.swagger.annotations.ApiModelProperty;

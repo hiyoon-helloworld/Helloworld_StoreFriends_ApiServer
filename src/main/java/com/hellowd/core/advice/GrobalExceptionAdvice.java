@@ -2,8 +2,7 @@ package com.hellowd.core.advice;
 
 import com.hellowd.core.exception.InternalServerException;
 import com.hellowd.core.exception.InvalidParameterException;
-import com.hellowd.core.exception.ServiceRuntimeException;
-import com.hellowd.core.model.http.ApiResult;
+import com.hellowd.core.model.http.common.ApiResult;
 import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

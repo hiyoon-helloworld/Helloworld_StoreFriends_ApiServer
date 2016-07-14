@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import com.hellowd.core.model.http.ApiResult;
+import com.hellowd.core.model.http.common.ApiResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -21,9 +21,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Component
 public class EntryPointUnauthorizedHandler implements AuthenticationEntryPoint {
 
-    private static ApiResult apiResult = new ApiResult(false, HttpStatus.UNAUTHORIZED, "Access denied", null);
+    private static ApiResult apiResult = new ApiResult(false, HttpStatus.UNAUTHORIZED, "Access denied");
 
-    @Autowired private MappingJackson2HttpMessageConverter converter;
+    private MappingJackson2HttpMessageConverter converter;
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)

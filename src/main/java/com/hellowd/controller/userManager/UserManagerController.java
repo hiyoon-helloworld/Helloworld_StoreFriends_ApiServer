@@ -1,8 +1,8 @@
 package com.hellowd.controller.userManager;
 
 import com.hellowd.core.model.entity.relation.UserManagerRelation;
-import com.hellowd.core.model.http.ApiResult;
-import com.hellowd.core.model.res.userManager.UserManagerRes;
+import com.hellowd.core.model.http.common.ApiResult;
+import com.hellowd.core.model.http.res.userManager.UserManagerRes;
 import com.hellowd.service.login.UserManagerService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +31,6 @@ public class UserManagerController {
     @ResponseStatus(HttpStatus.OK)
     public ApiResult getUserManager() {
         UserManagerRelation userManagerRelation = userManagerService.getUserManager();
-        //return new ApiResult(true, HttpStatus.OK, null, userManagerRelation);
-
         return new UserManagerRes(new ApiResult(true, HttpStatus.OK), userManagerRelation);
     }
 }

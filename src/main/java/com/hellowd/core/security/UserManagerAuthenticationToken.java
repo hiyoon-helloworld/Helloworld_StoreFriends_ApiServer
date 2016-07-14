@@ -5,7 +5,7 @@ package com.hellowd.core.security;
 
 import java.util.Collection;
 
-import com.hellowd.core.model.req.security.AuthenticationRequest;
+import com.hellowd.core.model.http.req.security.AuthenticationRequest;
 import com.hellowd.core.model.type.Device;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;

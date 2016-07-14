@@ -2,7 +2,7 @@ package com.hellowd.service.login;
 
 import com.hellowd.core.exception.NotFoundException;
 import com.hellowd.core.model.entity.UserManagerEntity;
-import com.hellowd.core.model.req.security.AuthenticationRequest;
+import com.hellowd.core.model.http.req.security.AuthenticationRequest;
 import com.hellowd.dao.IUserMangerDao;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

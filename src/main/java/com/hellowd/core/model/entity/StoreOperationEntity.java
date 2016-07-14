@@ -19,6 +19,7 @@ public class StoreOperationEntity {
     private String operDate;
     private Timestamp startDate;
     private Timestamp endDate;
+    private int reserveFund;
 
     @Id
     @Column(name = "seq")
@@ -94,5 +95,15 @@ public class StoreOperationEntity {
         result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
         result = 31 * result + (endDate != null ? endDate.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "reserve_fund")
+    public int getReserveFund() {
+        return reserveFund;
+    }
+
+    public void setReserveFund(int reserveFund) {
+        this.reserveFund = reserveFund;
     }
 }
