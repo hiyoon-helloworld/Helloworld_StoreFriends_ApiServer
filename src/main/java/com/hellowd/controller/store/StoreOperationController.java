@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by Helloworld
@@ -30,15 +31,32 @@ public class StoreOperationController {
     @Autowired
     private StoreOperationService storeOperationService;
 
-    @ApiOperation(value = "담당자로그인 및 준비금 설정", notes = "담당자로그인 및 준비금을 설정합니다.", code = 200)
-    @RequestMapping(path = "reservefund", method = RequestMethod.POST)
+    @ApiOperation(value = "영업시작", notes = "영업시작(담당자로그인 및 준비금을 설정)합니다.", code = 200)
+    @RequestMapping(path = "openStore", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ApiResult setReservefund(@RequestBody @Valid final StoreOperationReq storeOperationReq,
+    public ApiResult openStore(@RequestBody @Valid final StoreOperationReq storeOperationReq,
                                     final BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new InvalidParameterException(ErrorUtils.bindingErrorConverter(bindingResult));
         }
-        HttpStatusType.OPERATION_STATUS_TYPE operationStatusType = storeOperationService.setReserveFund(storeOperationReq);
+        HttpStatusType.OPERATION_STATUS_TYPE operationStatusType = storeOperationService.openStore(storeOperationReq);
+        return operationStatusType.getApiResult();
+    }
+
+    @ApiOperation(value = "영업종료", notes = "영업종료(담당자로그아웃)합니다.", code = 200)
+    @RequestMapping(path = "closeStore", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ApiResult closeStore(@RequestParam("ownerSeq") final long ownerSeq) {
+        HttpStatusType.OPERATION_STATUS_TYPE operationStatusType = storeOperationService.closeStore(ownerSeq);
+        return operationStatusType.getApiResult();
+    }
+
+    @ApiOperation(value = "영업종료취소", notes = "영업종료를 취소합니다.", code = 200)
+    @RequestMapping(path = "cancelCloseStore", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ApiResult cancelCloseStore(@RequestParam("ownerSeq") final long ownerSeq,
+                                @RequestParam("userSeq") final long userSeq) {
+        HttpStatusType.OPERATION_STATUS_TYPE operationStatusType = storeOperationService.cancelCloseStore(ownerSeq, userSeq);
         return operationStatusType.getApiResult();
     }
 

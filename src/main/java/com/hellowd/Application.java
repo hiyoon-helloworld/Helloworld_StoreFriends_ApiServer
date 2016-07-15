@@ -23,6 +23,7 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@ComponentScan
 @SpringBootApplication
 @PropertySources({@PropertySource("classpath:resources-${spring.profiles.active}/api.properties"),
 		@PropertySource("classpath:resources-${spring.profiles.active}/db.properties")})

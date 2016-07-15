@@ -3,9 +3,9 @@
  */
 package com.hellowd.core.config;
 
-import com.hellowd.core.security.UserManagerAuthenticationProvider;
 import com.hellowd.core.security.EntryPointUnauthorizedHandler;
 import com.hellowd.core.security.JwtAuthenticationTokenFilter;
+import com.hellowd.core.security.UserManagerAuthenticationProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
