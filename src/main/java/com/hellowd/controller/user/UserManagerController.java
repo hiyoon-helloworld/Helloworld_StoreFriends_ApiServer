@@ -1,9 +1,9 @@
-package com.hellowd.controller.userManager;
+package com.hellowd.controller.user;
 
 import com.hellowd.core.model.entity.relation.UserManagerRelation;
 import com.hellowd.core.model.http.common.ApiResult;
 import com.hellowd.core.model.http.res.userManager.UserManagerRes;
-import com.hellowd.service.login.UserManagerService;
+import com.hellowd.service.user.UserManagerService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

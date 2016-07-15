@@ -23,6 +23,7 @@ public class EntryPointUnauthorizedHandler implements AuthenticationEntryPoint {
 
     private static ApiResult apiResult = new ApiResult(false, HttpStatus.UNAUTHORIZED, "Access denied");
 
+    @Autowired
     private MappingJackson2HttpMessageConverter converter;
 
     @Override

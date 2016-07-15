@@ -2,6 +2,7 @@ package com.hellowd.core.model.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Created by Helloworld
@@ -15,15 +16,16 @@ import java.sql.Timestamp;
 //@Table(name = "store_user_login", schema = "sf_testbed", catalog = "")
 public class StoreUserLoginEntity {
     private long seq;
-    private long operationSeq;
-    private Timestamp loginDate;
-    private Timestamp logoutDate;
+    //private long operationSeq;
+    private Date loginDate;
+    private Date logoutDate;
     private long userSeq;
     private String userType;
-    private Timestamp regdate;
+    private Date regdate;
 
     @Id
     @Column(name = "seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getSeq() {
         return seq;
     }
@@ -32,33 +34,33 @@ public class StoreUserLoginEntity {
         this.seq = seq;
     }
 
-    @Basic
-    @Column(name = "operation_seq")
-    public long getOperationSeq() {
-        return operationSeq;
-    }
-
-    public void setOperationSeq(long operationSeq) {
-        this.operationSeq = operationSeq;
-    }
+//    @Basic
+//    @Column(name = "operation_seq")
+//    public long getOperationSeq() {
+//        return operationSeq;
+//    }
+//
+//    public void setOperationSeq(long operationSeq) {
+//        this.operationSeq = operationSeq;
+//    }
 
     @Basic
     @Column(name = "login_date")
-    public Timestamp getLoginDate() {
+    public Date getLoginDate() {
         return loginDate;
     }
 
-    public void setLoginDate(Timestamp loginDate) {
+    public void setLoginDate(Date loginDate) {
         this.loginDate = loginDate;
     }
 
     @Basic
     @Column(name = "logout_date")
-    public Timestamp getLogoutDate() {
+    public Date getLogoutDate() {
         return logoutDate;
     }
 
-    public void setLogoutDate(Timestamp logoutDate) {
+    public void setLogoutDate(Date logoutDate) {
         this.logoutDate = logoutDate;
     }
 
@@ -73,7 +75,7 @@ public class StoreUserLoginEntity {
     }
 
     @Basic
-    @Column(name = "user_type")
+    @Column(name = "user_type", columnDefinition = "CHAR(1)")
     public String getUserType() {
         return userType;
     }
@@ -84,11 +86,11 @@ public class StoreUserLoginEntity {
 
     @Basic
     @Column(name = "regdate")
-    public Timestamp getRegdate() {
+    public Date getRegdate() {
         return regdate;
     }
 
-    public void setRegdate(Timestamp regdate) {
+    public void setRegdate(Date regdate) {
         this.regdate = regdate;
     }
 
@@ -100,7 +102,7 @@ public class StoreUserLoginEntity {
         StoreUserLoginEntity that = (StoreUserLoginEntity) o;
 
         if (seq != that.seq) return false;
-        if (operationSeq != that.operationSeq) return false;
+//        if (operationSeq != that.operationSeq) return false;
         if (userSeq != that.userSeq) return false;
         if (loginDate != null ? !loginDate.equals(that.loginDate) : that.loginDate != null) return false;
         if (logoutDate != null ? !logoutDate.equals(that.logoutDate) : that.logoutDate != null) return false;
@@ -113,7 +115,7 @@ public class StoreUserLoginEntity {
     @Override
     public int hashCode() {
         int result = (int) (seq ^ (seq >>> 32));
-        result = 31 * result + (int) (operationSeq ^ (operationSeq >>> 32));
+//        result = 31 * result + (int) (operationSeq ^ (operationSeq >>> 32));
         result = 31 * result + (loginDate != null ? loginDate.hashCode() : 0);
         result = 31 * result + (logoutDate != null ? logoutDate.hashCode() : 0);
         result = 31 * result + (int) (userSeq ^ (userSeq >>> 32));

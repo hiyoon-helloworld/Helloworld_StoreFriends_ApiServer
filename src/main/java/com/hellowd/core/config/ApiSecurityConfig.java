@@ -30,10 +30,8 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Value("${jwt.token.role}") private String role;
 
-    @Autowired
-    private EntryPointUnauthorizedHandler unauthorizedHandler;
-    @Autowired
-    private UserManagerAuthenticationProvider userManagerAuthenticationProvider;
+    @Autowired private EntryPointUnauthorizedHandler unauthorizedHandler;
+    @Autowired private UserManagerAuthenticationProvider userManagerAuthenticationProvider;
 
     @Autowired
     public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) {
@@ -68,23 +66,21 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .csrf()
-                    .disable()
+                .disable()
                 .headers()
-                    .disable()
+                .disable()
                 .exceptionHandling()
-                    .authenticationEntryPoint(unauthorizedHandler)
-                    .and()
+                .authenticationEntryPoint(unauthorizedHandler)
+                .and()
                 .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                    .and()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
                 .authorizeRequests()
-                    .antMatchers("/api/login/**").permitAll()
-                    .antMatchers("/api/auth/**").permitAll()
-                    .antMatchers("/api/**").hasRole(role)
-                    .anyRequest().permitAll()
-                    .and()
+                .antMatchers("/login/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
                 .formLogin()
-                    .disable();
+                .disable();
         //-- JWT based authentication
         httpSecurity
                 .addFilterBefore(jwtAuthenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);

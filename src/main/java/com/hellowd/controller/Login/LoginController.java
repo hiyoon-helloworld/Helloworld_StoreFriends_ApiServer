@@ -1,4 +1,4 @@
-package com.hellowd.controller.Login;
+package com.hellowd.controller.login;
 
 import com.hellowd.core.exception.UnauthorizedException;
 import com.hellowd.core.model.entity.UserManagerEntity;

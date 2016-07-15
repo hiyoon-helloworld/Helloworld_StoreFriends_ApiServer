@@ -30,6 +30,7 @@ public class UserManagerEntity {
 
     @Id
     @Column(name = "seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getSeq() {
         return seq;
     }

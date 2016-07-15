@@ -19,15 +19,16 @@ import java.sql.Timestamp;
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
 public class UserPosEntity {
     private long seq;
-    private long managerSeq;
+//    private long managerSeq;
     private String type;
     private String macAddress;
     private String delYn;
     private Timestamp regdate;
-    private long ownerSeq;
+//    private long ownerSeq;
 
     @Id
     @Column(name = "seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getSeq() {
         return seq;
     }
@@ -36,15 +37,15 @@ public class UserPosEntity {
         this.seq = seq;
     }
 
-    @Basic
-    @Column(name = "manager_seq")
-    public long getManagerSeq() {
-        return managerSeq;
-    }
-
-    public void setManagerSeq(long managerSeq) {
-        this.managerSeq = managerSeq;
-    }
+//    @Basic
+//    @Column(name = "manager_seq")
+//    public long getManagerSeq() {
+//        return managerSeq;
+//    }
+//
+//    public void setManagerSeq(long managerSeq) {
+//        this.managerSeq = managerSeq;
+//    }
 
     @Basic
     @Column(name = "type", columnDefinition = "CHAR(1)")
@@ -86,15 +87,15 @@ public class UserPosEntity {
         this.regdate = regdate;
     }
 
-    @Basic
-    @Column(name = "owner_seq")
-    public long getOwnerSeq() {
-        return ownerSeq;
-    }
-
-    public void setOwnerSeq(long ownerSeq) {
-        this.ownerSeq = ownerSeq;
-    }
+//    @Basic
+//    @Column(name = "owner_seq")
+//    public long getOwnerSeq() {
+//        return ownerSeq;
+//    }
+//
+//    public void setOwnerSeq(long ownerSeq) {
+//        this.ownerSeq = ownerSeq;
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -104,7 +105,7 @@ public class UserPosEntity {
         UserPosEntity that = (UserPosEntity) o;
 
         if (seq != that.seq) return false;
-        if (managerSeq != that.managerSeq) return false;
+//        if (managerSeq != that.managerSeq) return false;
         if (type != null ? !type.equals(that.type) : that.type != null) return false;
         if (macAddress != null ? !macAddress.equals(that.macAddress) : that.macAddress != null) return false;
         if (delYn != null ? !delYn.equals(that.delYn) : that.delYn != null) return false;
@@ -116,7 +117,7 @@ public class UserPosEntity {
     @Override
     public int hashCode() {
         int result = (int) (seq ^ (seq >>> 32));
-        result = 31 * result + (int) (managerSeq ^ (managerSeq >>> 32));
+//        result = 31 * result + (int) (managerSeq ^ (managerSeq >>> 32));
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (macAddress != null ? macAddress.hashCode() : 0);
         result = 31 * result + (delYn != null ? delYn.hashCode() : 0);

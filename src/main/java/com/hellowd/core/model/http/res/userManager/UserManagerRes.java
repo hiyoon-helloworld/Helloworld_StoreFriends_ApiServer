@@ -48,8 +48,8 @@ public class UserManagerRes extends ApiResult {
         for (UserPosRelation userPosRelation : userPorRelationList) {
             UserPosRelation userPos = new UserPosRelation();
             userPos.setSeq(userPosRelation.getSeq());
-            userPos.setOwnerSeq(userPosRelation.getOwnerSeq());
-            userPos.setManagerSeq(userPosRelation.getManagerSeq());
+//            userPos.setOwnerSeq(userPosRelation.getOwnerSeq());
+//            userPos.setManagerSeq(userPosRelation.getManagerSeq());
             userPos.setType(userPosRelation.getType());
             userPos.setMacAddress(userPosRelation.getMacAddress());
             userPosList.add(userPos);
@@ -62,7 +62,7 @@ public class UserManagerRes extends ApiResult {
         for (UserEmployeeRelation userEmployeeRelation : userEmployeeRelationList) {
             UserEmployeeRelation userEmployee = new UserEmployeeRelation();
             userEmployee.setSeq(userEmployeeRelation.getSeq());
-            userEmployee.setManagerSeq(userEmployeeRelation.getManagerSeq());
+//            userEmployee.setManagerSeq(userEmployeeRelation.getManagerSeq());
             userEmployee.setName(userEmployeeRelation.getName());
             userEmployee.setType(userEmployeeRelation.getType());
             userEmployeeList.add(userEmployee);

@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 //@Table(name = "user_employee")
 public class UserEmployeeEntity {
     private long seq;
-    private long ownerSeq;
+    //private long ownerSeq;
     private String name;
     private String type;
     private String code;
@@ -26,10 +26,11 @@ public class UserEmployeeEntity {
     private String memo;
     private String delYn;
     private Timestamp regdate;
-    private long managerSeq;
+    //private long managerSeq;
 
     @Id
     @Column(name = "seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getSeq() {
         return seq;
     }
@@ -38,15 +39,15 @@ public class UserEmployeeEntity {
         this.seq = seq;
     }
 
-    @Basic
-    @Column(name = "owner_seq")
-    public long getOwnerSeq() {
-        return ownerSeq;
-    }
-
-    public void setOwnerSeq(long ownerSeq) {
-        this.ownerSeq = ownerSeq;
-    }
+//    @Basic
+//    @Column(name = "owner_seq")
+//    public long getOwnerSeq() {
+//        return ownerSeq;
+//    }
+//
+//    public void setOwnerSeq(long ownerSeq) {
+//        this.ownerSeq = ownerSeq;
+//    }
 
     @Basic
     @Column(name = "name")
@@ -148,15 +149,15 @@ public class UserEmployeeEntity {
         this.regdate = regdate;
     }
 
-    @Basic
-    @Column(name = "manager_seq")
-    public long getManagerSeq() {
-        return managerSeq;
-    }
-
-    public void setManagerSeq(long managerSeq) {
-        this.managerSeq = managerSeq;
-    }
+//    @Basic
+//    @Column(name = "manager_seq")
+//    public long getManagerSeq() {
+//        return managerSeq;
+//    }
+//
+//    public void setManagerSeq(long managerSeq) {
+//        this.managerSeq = managerSeq;
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -166,7 +167,7 @@ public class UserEmployeeEntity {
         UserEmployeeEntity that = (UserEmployeeEntity) o;
 
         if (seq != that.seq) return false;
-        if (ownerSeq != that.ownerSeq) return false;
+//        if (ownerSeq != that.ownerSeq) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (type != null ? !type.equals(that.type) : that.type != null) return false;
         if (code != null ? !code.equals(that.code) : that.code != null) return false;
@@ -185,7 +186,7 @@ public class UserEmployeeEntity {
     @Override
     public int hashCode() {
         int result = (int) (seq ^ (seq >>> 32));
-        result = 31 * result + (int) (ownerSeq ^ (ownerSeq >>> 32));
+//        result = 31 * result + (int) (ownerSeq ^ (ownerSeq >>> 32));
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (code != null ? code.hashCode() : 0);

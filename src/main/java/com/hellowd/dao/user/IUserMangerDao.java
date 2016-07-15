@@ -1,4 +1,4 @@
-package com.hellowd.dao;
+package com.hellowd.dao.user;
 
 import com.hellowd.core.model.entity.UserManagerEntity;
 import com.hellowd.core.model.entity.relation.UserManagerRelation;

@@ -1,10 +1,10 @@
-package com.hellowd.service.login;
+package com.hellowd.service.user;
 
 import com.hellowd.core.exception.InternalServerException;
 import com.hellowd.core.exception.UnauthorizedException;
 import com.hellowd.core.model.entity.relation.UserManagerRelation;
 import com.hellowd.core.security.SecurityService;
-import com.hellowd.dao.IUserMangerDao;
+import com.hellowd.dao.user.IUserMangerDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;

@@ -36,8 +36,6 @@
     <mapping class="com.hellowd.core.model.entity.UserManagerEntity"/>
     <mapping class="com.hellowd.core.model.entity.UserManagerBusinessEntity"/>
     <mapping class="com.hellowd.core.model.entity.UserPosEntity"/>
-    <mapping resource="com/hellowd/core/model/entity/CategoryEntity.hbm.xml"/>
-    <mapping resource="com/hellowd/core/model/entity/CategoryStoreEntity.hbm.xml"/>
     <mapping class="com.hellowd.core.model.entity.StoreUserLoginEntity"/>
   </session-factory>
 </hibernate-configuration>

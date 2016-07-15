@@ -33,30 +33,48 @@ public class ApiResult {
     /**
      * Http Api Result 를 셋팅합니다.
      * @param isSuccess 성공여부
-     * @param status Http Status Code
+     * @param status Status Code
      */
-    public ApiResult(final boolean isSuccess, final HttpStatus status) {
+    public ApiResult(final boolean isSuccess, final int status) {
         ApiResult(isSuccess, status, null);
     }
 
     /**
      * Http Api Result 를 셋팅합니다.
      * @param isSuccess 성공여부
-     * @param status Http Status Code
+     * @param status Status Code
      */
-    public ApiResult(final boolean isSuccess, final HttpStatus status, final String message) {
+    public ApiResult(final boolean isSuccess, final HttpStatus status) {
+        ApiResult(isSuccess, status.value(), null);
+    }
+
+    /**
+     * Http Api Result 를 셋팅합니다.
+     * @param isSuccess 성공여부
+     * @param status Status Code
+     */
+    public ApiResult(final boolean isSuccess, final int status, final String message) {
         ApiResult(isSuccess, status, message);
     }
 
     /**
      * Http Api Result 를 셋팅합니다.
      * @param isSuccess 성공여부
-     * @param status Http Status Code
+     * @param status Status Code
+     */
+    public ApiResult(final boolean isSuccess, final HttpStatus status, final String message) {
+        ApiResult(isSuccess, status.value(), message);
+    }
+
+    /**
+     * Http Api Result 를 셋팅합니다.
+     * @param isSuccess 성공여부
+     * @param status Status Code
      * @param message 결과 메시지
      */
-    private void ApiResult(final boolean isSuccess, final HttpStatus status, final String message) {
+    private void ApiResult(final boolean isSuccess, final int status, final String message) {
         this.isSuccess = isSuccess;
-        this.status = status.value();
+        this.status = status;
         this.message = message;
     }
 }

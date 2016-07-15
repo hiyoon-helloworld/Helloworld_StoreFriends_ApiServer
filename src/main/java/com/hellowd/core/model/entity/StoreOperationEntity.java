@@ -2,6 +2,7 @@ package com.hellowd.core.model.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Created by Helloworld
@@ -17,12 +18,13 @@ public class StoreOperationEntity {
     private long seq;
     private long ownerSeq;
     private String operDate;
-    private Timestamp startDate;
-    private Timestamp endDate;
+    private Date startDate;
+    private Date endDate;
     private int reserveFund;
 
     @Id
     @Column(name = "seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getSeq() {
         return seq;
     }
@@ -53,21 +55,21 @@ public class StoreOperationEntity {
 
     @Basic
     @Column(name = "start_date")
-    public Timestamp getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Timestamp startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
     @Basic
     @Column(name = "end_date")
-    public Timestamp getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Timestamp endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
