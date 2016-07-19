@@ -31,7 +31,7 @@ public class LoginService {
 
         throwIfEmptyOrNull("credentials", credentials, p -> StringUtils.isNotEmpty(credentials));
 
-        UserManagerEntity managerEntity = userMangerDao.getOneByIdAndDelYnNot(principal, "1");
+        UserManagerEntity managerEntity = userMangerDao.getOneByIdAndDelYnNot(principal, "N");
         if (managerEntity == null) {
             throw new NotFoundException(UserManagerEntity.class.getSimpleName(), principal);
         }

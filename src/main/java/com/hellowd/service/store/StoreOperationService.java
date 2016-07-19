@@ -3,23 +3,16 @@ package com.hellowd.service.store;
 import com.hellowd.core.exception.InternalServerException;
 import com.hellowd.core.model.entity.relation.StoreOperationRelation;
 import com.hellowd.core.model.entity.relation.StoreUserLoginRelation;
-import com.hellowd.core.model.entity.relation.UserManagerRelation;
-import com.hellowd.core.model.http.common.ApiResult;
-import com.hellowd.core.model.http.req.storeOperation.StoreOperationReq;
+import com.hellowd.core.model.http.req.store.StoreOperationReq;
 import com.hellowd.core.model.type.HttpStatusType;
 import com.hellowd.core.utils.DatetimeUtils;
 import com.hellowd.dao.store.IStoreOperationDao;
 import com.hellowd.dao.store.IStoreUserLoginDao;
 import com.sun.javafx.binding.StringFormatter;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
-import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,7 +23,6 @@ import java.util.List;
  * Time : 오후 4:23
  * 해당 클래스에 대한 기능 설명
  */
-@Slf4j
 @Service
 public class StoreOperationService {
 
@@ -65,7 +57,7 @@ public class StoreOperationService {
             if (operationStatusType == HttpStatusType.OPERATION_STATUS_TYPE.OK) {
                 // 운영시간 정보 셋팅
                 StoreOperationRelation storeOperation = new StoreOperationRelation();
-                storeOperation.setOwnerSeq(storeOperationReq.getOwnerSeq());
+                storeOperation.setRootSeq(storeOperationReq.getRootSeq());
                 storeOperation.setOperDate(searchDate);
                 storeOperation.setStartDate(new Date());
                 storeOperation.setReserveFund(storeOperationReq.getReserveFund());
@@ -94,11 +86,11 @@ public class StoreOperationService {
 
     /**
      * 영업 종료합니다.
-     * @param ownerSeq 가맹점주 SEQ
+     * @param rootSeq 가맹점주 SEQ
      * @return 영업 종료 결과
      */
     @Transactional
-    public HttpStatusType.OPERATION_STATUS_TYPE closeStore(final long ownerSeq) {
+    public HttpStatusType.OPERATION_STATUS_TYPE closeStore(final long rootSeq) {
 
         // 지역변수
         String searchDate = DatetimeUtils.getStrToday();
@@ -107,16 +99,16 @@ public class StoreOperationService {
 
         try {
             // 운영시간 종료 가능 여부를 판단합니다.
-            operationStatusType = isStoreClosable(ownerSeq, searchDate);
+            operationStatusType = isStoreClosable(rootSeq, searchDate);
 
             // 운영시간 정보 및 사용자정보를 등록합니다.
             if (operationStatusType == HttpStatusType.OPERATION_STATUS_TYPE.OK) {
-                storeOperationDao.updateEndDateByOwnerSeq(ownerSeq, logoutDate);
-                storeUserLoginDao.updateLogoutDateByOwnerSeq(ownerSeq, logoutDate);
+                storeOperationDao.updateEndDateByRootSeq(rootSeq, logoutDate);
+                storeUserLoginDao.updateLogoutDateByRootSeq(rootSeq, logoutDate);
             }
         } catch (Exception ex) {
-            throw new InternalServerException(String.format("ownerSeq: %s, stacktrace: %s",
-                    ownerSeq, ex.getMessage()));
+            throw new InternalServerException(String.format("rootSeq: %s, stacktrace: %s",
+                    rootSeq, ex.getMessage()));
         }
 
         // 결과값을 반환합니다.
@@ -125,11 +117,11 @@ public class StoreOperationService {
 
     /**
      * 영업 종료를 취소합니다.
-     * @param ownerSeq 가맹점주 SEQ
+     * @param rootSeq 가맹점주 SEQ
      * @return 영업 종료 취소 결과
      */
     @Transactional
-    public HttpStatusType.OPERATION_STATUS_TYPE cancelCloseStore(final long ownerSeq, final long userSeq) {
+    public HttpStatusType.OPERATION_STATUS_TYPE cancelCloseStore(final long rootSeq, final long userSeq) {
 
         // 지역변수
         String searchDate = DatetimeUtils.getStrToday();
@@ -137,16 +129,16 @@ public class StoreOperationService {
         HttpStatusType.OPERATION_STATUS_TYPE operationStatusType = HttpStatusType.OPERATION_STATUS_TYPE.OK;
 
         try {
-            if (!this.isOpenStore(ownerSeq)) { // 현재 영업 종료중이라면 취소 가능하므로 처리한다.
-                storeOperationDao.updateEndDateNullByOwnerSeq(ownerSeq);
-                storeUserLoginDao.updateLogoutDateNullByOwnerSeqAndUserSeq(ownerSeq, userSeq);
+            if (!this.isOpenStore(rootSeq)) { // 현재 영업 종료중이라면 취소 가능하므로 처리한다.
+                storeOperationDao.updateEndDateNullByRootSeq(rootSeq);
+                storeUserLoginDao.updateLogoutDateNullByRootSeqAndUserSeq(rootSeq, userSeq);
 
             } else { // 현재 영업 중이라면 영업취소를 할 수는 없다.
                 operationStatusType = HttpStatusType.OPERATION_STATUS_TYPE.IS_OPEN_NOW;
             }
         } catch (Exception ex) {
-            throw new InternalServerException(String.format("ownerSeq: %s, stacktrace: %s",
-                    ownerSeq, ex.getMessage()));
+            throw new InternalServerException(String.format("rootSeq: %s, stacktrace: %s",
+                    rootSeq, ex.getMessage()));
         }
 
         // 결과값을 반환합니다.
@@ -159,13 +151,14 @@ public class StoreOperationService {
      * @param searchDate 운영시작할 날짜
      * @return 운영시작 가능여부
      */
-    private HttpStatusType.OPERATION_STATUS_TYPE isStoreOpenable(final StoreOperationReq storeOperationReq, final String searchDate) {
+    private HttpStatusType.OPERATION_STATUS_TYPE isStoreOpenable(final StoreOperationReq storeOperationReq,
+                                                                 final String searchDate) {
         // 지역변수
         HttpStatusType.OPERATION_STATUS_TYPE operationStatusType = HttpStatusType.OPERATION_STATUS_TYPE.OK;
 
         // 현재 가맹점의 운영시간 정보를 가져옵니다.
         List<StoreOperationRelation> storeOperationRelationList =
-                storeOperationDao.getListForStoreOpen(storeOperationReq.getOwnerSeq(),
+                storeOperationDao.findAllForStoreOpen(storeOperationReq.getRootSeq(),
                         searchDate);
 
         // 운영시간 시작 가능 여부를 판단합니다.
@@ -191,17 +184,17 @@ public class StoreOperationService {
 
     /**
      * 운영 종료 가능 여부를 판단합니다.
-     * @param ownerSeq 가맹점주 SEQ
+     * @param rootSeq 가맹점주 SEQ
      * @param searchDate 운영종료할 날짜
      * @return
      */
-    private HttpStatusType.OPERATION_STATUS_TYPE isStoreClosable(final long ownerSeq, final String searchDate) {
+    private HttpStatusType.OPERATION_STATUS_TYPE isStoreClosable(final long rootSeq, final String searchDate) {
         // 지역변수
         HttpStatusType.OPERATION_STATUS_TYPE operationStatusType = HttpStatusType.OPERATION_STATUS_TYPE.OK;
 
         // 현재 가맹점의 운영시간 정보를 가져옵니다.
         List<StoreOperationRelation> storeOperationRelationList =
-                storeOperationDao.getListForStoreClose(ownerSeq,
+                storeOperationDao.findAllForStoreClose(rootSeq,
                         searchDate);
 
         // 운영시간 종료 가능 여부를 판단합니다.
@@ -229,16 +222,16 @@ public class StoreOperationService {
 
     /**
      * 운영 상태(시작, 종료)를 조회합니다..
-     * @param ownerSeq 가맹점주 SEQ
+     * @param rootSeq 가맹점주 SEQ
      * @return
      */
-    private boolean isOpenStore(final long ownerSeq) {
+    private boolean isOpenStore(final long rootSeq) {
 
         // 지역변수
         boolean isOpenStore = false;
 
         // 현재 가맹점의 운영시간 정보를 가져옵니다.
-        List<StoreOperationRelation> storeOperationRelationList = storeOperationDao.findByOwnerSeqAndEndDateIsNotNull(ownerSeq);
+        List<StoreOperationRelation> storeOperationRelationList = storeOperationDao.findByRootSeqAndEndDateIsNotNull(rootSeq);
 
         // End Date가 NotNull이 한 건이라도 있으면 운영중이다.
         if (storeOperationRelationList != null && storeOperationRelationList.size() > 1) {

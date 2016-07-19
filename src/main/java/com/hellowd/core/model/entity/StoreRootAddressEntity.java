@@ -5,31 +5,19 @@ import javax.persistence.*;
 /**
  * Created by Helloworld
  * User : hiyoon
- * Date : 2016-07-11
- * Time : 오전 10:07
+ * Date : 2016-07-19
+ * Time : 오후 12:21
  * 해당 클래스에 대한 기능 설명
  */
 @MappedSuperclass
 //@Entity
-//@Table(name = "store_owner_address")
-public class StoreOwnerAddressEntity {
+//@javax.persistence.Table(name = "store_root_address", schema = "sf_testbed", catalog = "")
+public class StoreRootAddressEntity {
     private long seq;
-    private long ownerSeq;
-    private String type;
-    private String postcode;
-    private String zonecode;
-    private String bcode;
-    private String bname;
-    private String bldgCode;
-    private String bldgName;
-    private String postAddress;
-    private String legacyPostAddress;
-    private String detailPostAddress;
-    private String gpsLat;
-    private String gpsLng;
 
     @Id
-    @Column(name = "seq")
+    @javax.persistence.Column(name = "seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getSeq() {
         return seq;
     }
@@ -38,18 +26,22 @@ public class StoreOwnerAddressEntity {
         this.seq = seq;
     }
 
-    @Basic
-    @Column(name = "owner_seq")
-    public long getOwnerSeq() {
-        return ownerSeq;
-    }
-
-    public void setOwnerSeq(long ownerSeq) {
-        this.ownerSeq = ownerSeq;
-    }
+    private long rootSeq;
 
     @Basic
-    @Column(name = "type", columnDefinition = "CHAR(1)")
+    @javax.persistence.Column(name = "root_seq")
+    public long getRootSeq() {
+        return rootSeq;
+    }
+
+    public void setRootSeq(long rootSeq) {
+        this.rootSeq = rootSeq;
+    }
+
+    private String type;
+
+    @Basic
+    @javax.persistence.Column(name = "type", columnDefinition = "CHAR(1)")
     public String getType() {
         return type;
     }
@@ -58,8 +50,10 @@ public class StoreOwnerAddressEntity {
         this.type = type;
     }
 
+    private String postcode;
+
     @Basic
-    @Column(name = "postcode")
+    @javax.persistence.Column(name = "postcode")
     public String getPostcode() {
         return postcode;
     }
@@ -68,8 +62,10 @@ public class StoreOwnerAddressEntity {
         this.postcode = postcode;
     }
 
+    private String zonecode;
+
     @Basic
-    @Column(name = "zonecode")
+    @javax.persistence.Column(name = "zonecode")
     public String getZonecode() {
         return zonecode;
     }
@@ -78,8 +74,10 @@ public class StoreOwnerAddressEntity {
         this.zonecode = zonecode;
     }
 
+    private String bcode;
+
     @Basic
-    @Column(name = "bcode")
+    @javax.persistence.Column(name = "bcode")
     public String getBcode() {
         return bcode;
     }
@@ -88,8 +86,10 @@ public class StoreOwnerAddressEntity {
         this.bcode = bcode;
     }
 
+    private String bname;
+
     @Basic
-    @Column(name = "bname")
+    @javax.persistence.Column(name = "bname")
     public String getBname() {
         return bname;
     }
@@ -98,8 +98,10 @@ public class StoreOwnerAddressEntity {
         this.bname = bname;
     }
 
+    private String bldgCode;
+
     @Basic
-    @Column(name = "bldg_code")
+    @javax.persistence.Column(name = "bldg_code")
     public String getBldgCode() {
         return bldgCode;
     }
@@ -108,8 +110,10 @@ public class StoreOwnerAddressEntity {
         this.bldgCode = bldgCode;
     }
 
+    private String bldgName;
+
     @Basic
-    @Column(name = "bldg_name")
+    @javax.persistence.Column(name = "bldg_name")
     public String getBldgName() {
         return bldgName;
     }
@@ -118,8 +122,10 @@ public class StoreOwnerAddressEntity {
         this.bldgName = bldgName;
     }
 
+    private String postAddress;
+
     @Basic
-    @Column(name = "post_address")
+    @javax.persistence.Column(name = "post_address")
     public String getPostAddress() {
         return postAddress;
     }
@@ -128,8 +134,10 @@ public class StoreOwnerAddressEntity {
         this.postAddress = postAddress;
     }
 
+    private String legacyPostAddress;
+
     @Basic
-    @Column(name = "legacy_post_address")
+    @javax.persistence.Column(name = "legacy_post_address")
     public String getLegacyPostAddress() {
         return legacyPostAddress;
     }
@@ -138,8 +146,10 @@ public class StoreOwnerAddressEntity {
         this.legacyPostAddress = legacyPostAddress;
     }
 
+    private String detailPostAddress;
+
     @Basic
-    @Column(name = "detail_post_address")
+    @javax.persistence.Column(name = "detail_post_address")
     public String getDetailPostAddress() {
         return detailPostAddress;
     }
@@ -148,8 +158,10 @@ public class StoreOwnerAddressEntity {
         this.detailPostAddress = detailPostAddress;
     }
 
+    private String gpsLat;
+
     @Basic
-    @Column(name = "gps_lat")
+    @javax.persistence.Column(name = "gps_lat")
     public String getGpsLat() {
         return gpsLat;
     }
@@ -158,8 +170,10 @@ public class StoreOwnerAddressEntity {
         this.gpsLat = gpsLat;
     }
 
+    private String gpsLng;
+
     @Basic
-    @Column(name = "gps_lng")
+    @javax.persistence.Column(name = "gps_lng")
     public String getGpsLng() {
         return gpsLng;
     }
@@ -173,10 +187,10 @@ public class StoreOwnerAddressEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        StoreOwnerAddressEntity that = (StoreOwnerAddressEntity) o;
+        StoreRootAddressEntity that = (StoreRootAddressEntity) o;
 
         if (seq != that.seq) return false;
-        if (ownerSeq != that.ownerSeq) return false;
+        if (rootSeq != that.rootSeq) return false;
         if (type != null ? !type.equals(that.type) : that.type != null) return false;
         if (postcode != null ? !postcode.equals(that.postcode) : that.postcode != null) return false;
         if (zonecode != null ? !zonecode.equals(that.zonecode) : that.zonecode != null) return false;
@@ -198,7 +212,7 @@ public class StoreOwnerAddressEntity {
     @Override
     public int hashCode() {
         int result = (int) (seq ^ (seq >>> 32));
-        result = 31 * result + (int) (ownerSeq ^ (ownerSeq >>> 32));
+        result = 31 * result + (int) (rootSeq ^ (rootSeq >>> 32));
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (postcode != null ? postcode.hashCode() : 0);
         result = 31 * result + (zonecode != null ? zonecode.hashCode() : 0);

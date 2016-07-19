@@ -31,7 +31,7 @@ public class UserManagerService {
         UserManagerRelation result = null;
         try {
             long seq = securityService.me();
-            result = userManagerDao.getOneBySeqAndDelYnNot(seq, "1");
+            result = userManagerDao.getOneBySeqAndDelYnNot(seq, "N");
         } catch (DataAccessException ex) {
             throw new InternalServerException(ex.getLocalizedMessage());
         } catch (Exception ex) {

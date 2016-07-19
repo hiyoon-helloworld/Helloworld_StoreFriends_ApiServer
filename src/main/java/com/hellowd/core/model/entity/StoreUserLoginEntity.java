@@ -23,15 +23,23 @@ public class StoreUserLoginEntity {
     private String userType;
     private Date regdate;
 
+    public void setLoginDate(Timestamp loginDate) {
+        this.loginDate = loginDate;
+    }
+
+    public void setLogoutDate(Timestamp logoutDate) {
+        this.logoutDate = logoutDate;
+    }
+
+    public void setRegdate(Timestamp regdate) {
+        this.regdate = regdate;
+    }
+
     @Id
     @Column(name = "seq")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getSeq() {
         return seq;
-    }
-
-    public void setSeq(long seq) {
-        this.seq = seq;
     }
 
 //    @Basic
@@ -43,6 +51,10 @@ public class StoreUserLoginEntity {
 //    public void setOperationSeq(long operationSeq) {
 //        this.operationSeq = operationSeq;
 //    }
+
+    public void setSeq(long seq) {
+        this.seq = seq;
+    }
 
     @Basic
     @Column(name = "login_date")

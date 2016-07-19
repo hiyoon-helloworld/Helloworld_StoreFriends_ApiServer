@@ -15,7 +15,6 @@ import java.sql.Timestamp;
 //@javax.persistence.Table(name = "store")
 public class StoreEntity {
     private long seq;
-    private long ownerSeq;
     private long sellerSeq;
     private String name;
     private String phone;
@@ -35,25 +34,20 @@ public class StoreEntity {
     private String useYn;
     private String delYn;
     private Timestamp regdate;
+    private long rootSeq;
+    private String useStoreYn;
+    private String useDeliveryYn;
+    private String usePackageYn;
 
     @Id
     @Column(name = "seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getSeq() {
         return seq;
     }
 
     public void setSeq(long seq) {
         this.seq = seq;
-    }
-
-    @Basic
-    @Column(name = "owner_seq")
-    public long getOwnerSeq() {
-        return ownerSeq;
-    }
-
-    public void setOwnerSeq(long ownerSeq) {
-        this.ownerSeq = ownerSeq;
     }
 
     @Basic
@@ -246,6 +240,46 @@ public class StoreEntity {
         this.regdate = regdate;
     }
 
+    @Basic
+    @Column(name = "root_seq")
+    public long getRootSeq() {
+        return rootSeq;
+    }
+
+    public void setRootSeq(long rootSeq) {
+        this.rootSeq = rootSeq;
+    }
+
+    @Basic
+    @Column(name = "use_store_yn", columnDefinition = "CHAR(1)")
+    public String getUseStoreYn() {
+        return useStoreYn;
+    }
+
+    public void setUseStoreYn(String useStoreYn) {
+        this.useStoreYn = useStoreYn;
+    }
+
+    @Basic
+    @Column(name = "use_delivery_yn", columnDefinition = "CHAR(1)")
+    public String getUseDeliveryYn() {
+        return useDeliveryYn;
+    }
+
+    public void setUseDeliveryYn(String useDeliveryYn) {
+        this.useDeliveryYn = useDeliveryYn;
+    }
+
+    @Basic
+    @Column(name = "use_package_yn", columnDefinition = "CHAR(1)")
+    public String getUsePackageYn() {
+        return usePackageYn;
+    }
+
+    public void setUsePackageYn(String usePackageYn) {
+        this.usePackageYn = usePackageYn;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -254,7 +288,6 @@ public class StoreEntity {
         StoreEntity that = (StoreEntity) o;
 
         if (seq != that.seq) return false;
-        if (ownerSeq != that.ownerSeq) return false;
         if (sellerSeq != that.sellerSeq) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
@@ -284,7 +317,6 @@ public class StoreEntity {
     @Override
     public int hashCode() {
         int result = (int) (seq ^ (seq >>> 32));
-        result = 31 * result + (int) (ownerSeq ^ (ownerSeq >>> 32));
         result = 31 * result + (int) (sellerSeq ^ (sellerSeq >>> 32));
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);

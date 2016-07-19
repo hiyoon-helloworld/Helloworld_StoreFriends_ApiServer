@@ -15,6 +15,8 @@ import javax.persistence.*;
 public class StoreCidEntity {
     private long seq;
     private String cidNo;
+    private long rootSeq;
+    private long storeSeq;
 
     @Id
     @Column(name = "seq")
@@ -54,5 +56,25 @@ public class StoreCidEntity {
         int result = (int) (seq ^ (seq >>> 32));
         result = 31 * result + (cidNo != null ? cidNo.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "root_seq")
+    public long getRootSeq() {
+        return rootSeq;
+    }
+
+    public void setRootSeq(long rootSeq) {
+        this.rootSeq = rootSeq;
+    }
+
+    @Basic
+    @Column(name = "store_seq")
+    public long getStoreSeq() {
+        return storeSeq;
+    }
+
+    public void setStoreSeq(long storeSeq) {
+        this.storeSeq = storeSeq;
     }
 }

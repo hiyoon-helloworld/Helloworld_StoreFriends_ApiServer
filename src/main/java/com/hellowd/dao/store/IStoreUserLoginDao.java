@@ -28,13 +28,13 @@ public interface IStoreUserLoginDao extends JpaRepository<StoreUserLoginRelation
     @Modifying
     @Query(nativeQuery = true,
             value = "update store_user_login set logout_date = :logoutDate " +
-            "where operation_seq in (select seq from store_operation where owner_seq = :ownerSeq) and logout_date is null")
-    void updateLogoutDateByOwnerSeq(@Param("ownerSeq") long ownerSeq, @Param("logoutDate") Date logoutDate);
+            "where operation_seq in (select seq from store_operation where root_seq = :rootSeq) and logout_date is null")
+    void updateLogoutDateByRootSeq(@Param("rootSeq") long ownerSeq, @Param("logoutDate") Date logoutDate);
 
 
     /**
      * 영업마감 취소처리
-     * @param ownerSeq
+     * @param rootSeq
      */
     @Modifying
     @Query(nativeQuery = true,
@@ -43,6 +43,6 @@ public interface IStoreUserLoginDao extends JpaRepository<StoreUserLoginRelation
                     "logout_date = null \n" +
                     "where seq = (select t.seq from(select max(sul.seq) as seq " +
                     "from store_operation so inner join store_user_login sul on so.seq = sul.operation_seq " +
-                    "where so.owner_seq = :ownerSeq and sul.user_seq = :userSeq) as t)")
-    void updateLogoutDateNullByOwnerSeqAndUserSeq(@Param("ownerSeq") long ownerSeq, @Param("userSeq") long userSeq);
+                    "where so.root_seq = :rootSeq and sul.user_seq = :userSeq) as t)")
+    void updateLogoutDateNullByRootSeqAndUserSeq(@Param("rootSeq") long rootSeq, @Param("userSeq") long userSeq);
 }

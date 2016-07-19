@@ -23,44 +23,44 @@ public interface IStoreOperationDao extends JpaRepository<StoreOperationRelation
 
     /**
      * 가맹점 영업중 상태인지 여부를 판단하기 위한 목록 조회
-     * @param ownerSeq
+     * @param rootSeq
      * @param operDate
      * @return
      */
-    @Query("select u from StoreOperationRelation u where u.ownerSeq = :ownerSeq and (u.endDate is null or u.operDate = :operDate)")
-    List<StoreOperationRelation> getListForStoreOpen(@Param("ownerSeq") long ownerSeq,
-                                                              @Param("operDate") String operDate);
+    @Query("select u from StoreOperationRelation u where u.rootSeq = :rootSeq and (u.endDate is null or u.operDate = :operDate)")
+    List<StoreOperationRelation> findAllForStoreOpen(@Param("rootSeq") long rootSeq,
+                                                     @Param("operDate") String operDate);
 
     /**
      * 가맹점 영업마감 상태인지 여부를 판단하기 위한 목록 조회
-     * @param ownerSeq
+     * @param rootSeq
      * @param operDate
      * @return
      */
-    @Query("select u from StoreOperationRelation u where u.ownerSeq = :ownerSeq and (u.endDate is not null or u.operDate = :operDate)")
-    List<StoreOperationRelation> getListForStoreClose(@Param("ownerSeq") long ownerSeq,
-                                                              @Param("operDate") String operDate);
+    @Query("select u from StoreOperationRelation u where u.rootSeq = :rootSeq and (u.endDate is not null or u.operDate = :operDate)")
+    List<StoreOperationRelation> findAllForStoreClose(@Param("rootSeq") long rootSeq,
+                                                      @Param("operDate") String operDate);
 
     /**
      * 영업중인지 여부를 판단하기 위한 조회
-     * @param ownerSeq
+     * @param rootSeq
      * @return
      */
     @Query
-    List<StoreOperationRelation> findByOwnerSeqAndEndDateIsNotNull(@Param("ownerSeq") long ownerSeq);
+    List<StoreOperationRelation> findByRootSeqAndEndDateIsNotNull(@Param("rootSeq") long rootSeq);
 
     /**
      * 영업마감 처리
-     * @param ownerSeq
+     * @param rootSeq
      * @param endDate
      */
     @Modifying
-    @Query("update StoreOperationRelation u set u.endDate = :endDate where u.ownerSeq = :ownerSeq and u.endDate is null")
-    void updateEndDateByOwnerSeq(@Param("ownerSeq") long ownerSeq, @Param("endDate") Date endDate);
+    @Query("update StoreOperationRelation u set u.endDate = :endDate where u.rootSeq = :rootSeq and u.endDate is null")
+    void updateEndDateByRootSeq(@Param("rootSeq") long rootSeq, @Param("endDate") Date endDate);
 
     /**
      * 영업마감 취소처리
-     * @param ownerSeq
+     * @param rootSeq
      */
     @Modifying
     @Query(nativeQuery = true,
@@ -68,6 +68,6 @@ public interface IStoreOperationDao extends JpaRepository<StoreOperationRelation
                     "\tstore_operation\n" +
                     "set \n" +
                     "end_date = null\n" +
-                    "where seq in (select t.seq from (select max(seq) as seq from store_operation where owner_seq = :ownerSeq) as t)")
-    void updateEndDateNullByOwnerSeq(@Param("ownerSeq") long ownerSeq);
+                    "where seq in (select t.seq from (select max(seq) as seq from store_operation where root_seq = :rootSeq) as t)")
+    void updateEndDateNullByRootSeq(@Param("rootSeq") long rootSeq);
 }

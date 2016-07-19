@@ -4,7 +4,8 @@ import com.hellowd.core.exception.UnauthorizedException;
 import com.hellowd.core.model.entity.UserManagerEntity;
 import com.hellowd.core.model.http.common.ApiResult;
 import com.hellowd.core.model.http.req.security.AuthenticationRequest;
-import com.hellowd.core.model.http.res.Login.LoginRes;
+import com.hellowd.core.model.http.res.login.LoginRes;
+import com.hellowd.core.model.type.HttpStatusType;
 import com.hellowd.core.security.JWT;
 import com.hellowd.core.security.UserManagerAuthenticationToken;
 import io.swagger.annotations.ApiOperation;
@@ -15,10 +16,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -73,12 +71,18 @@ public class LoginController {
      * 비밀번호 찾기
      * @return 결과값
      */
-    @RequestMapping(path = "/findpassword", method = RequestMethod.POST)
-    @ApiOperation(value = "비밀번호찾기", notes = "필수값: principal, credentials")
-    public ApiResult findPassword() {
+    @RequestMapping(path = "findpassword", method = RequestMethod.POST)
+    @ApiOperation(value = "비밀번호 재발급", notes = "비밀번호 재발급 처리합니다. (필수값: id, phone)")
+    public ApiResult findPassword(@RequestParam(value = "id", required = true) final String id,
+                                  @RequestParam(value = "phone", required = true) final String phone) {
+
         // TODO: 2016-07-14 비밀번호 생성 후 문자 전송.
 
         // 결과값 전송
-        return new ApiResult(true, HttpStatus.OK);
+        if (id.equals("manager1")) {
+            return HttpStatusType.PASSWORD_STATUS_TYPE.OK.getApiResult();
+        } else {
+            return HttpStatusType.PASSWORD_STATUS_TYPE.CANNOT_FIND_ID.getApiResult();
+        }
     }
 }

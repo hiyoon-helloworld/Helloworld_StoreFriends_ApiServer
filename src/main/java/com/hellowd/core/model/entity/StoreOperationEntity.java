@@ -16,11 +16,19 @@ import java.util.Date;
 //@Table(name = "store_operation")
 public class StoreOperationEntity {
     private long seq;
-    private long ownerSeq;
     private String operDate;
     private Date startDate;
     private Date endDate;
     private int reserveFund;
+    private long rootSeq;
+
+    public void setStartDate(Timestamp startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(Timestamp endDate) {
+        this.endDate = endDate;
+    }
 
     @Id
     @Column(name = "seq")
@@ -31,16 +39,6 @@ public class StoreOperationEntity {
 
     public void setSeq(long seq) {
         this.seq = seq;
-    }
-
-    @Basic
-    @Column(name = "owner_seq")
-    public long getOwnerSeq() {
-        return ownerSeq;
-    }
-
-    public void setOwnerSeq(long ownerSeq) {
-        this.ownerSeq = ownerSeq;
     }
 
     @Basic
@@ -73,6 +71,26 @@ public class StoreOperationEntity {
         this.endDate = endDate;
     }
 
+    @Basic
+    @Column(name = "reserve_fund")
+    public int getReserveFund() {
+        return reserveFund;
+    }
+
+    public void setReserveFund(int reserveFund) {
+        this.reserveFund = reserveFund;
+    }
+
+    @Basic
+    @Column(name = "root_seq")
+    public long getRootSeq() {
+        return rootSeq;
+    }
+
+    public void setRootSeq(long rootSeq) {
+        this.rootSeq = rootSeq;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -81,7 +99,6 @@ public class StoreOperationEntity {
         StoreOperationEntity that = (StoreOperationEntity) o;
 
         if (seq != that.seq) return false;
-        if (ownerSeq != that.ownerSeq) return false;
         if (operDate != null ? !operDate.equals(that.operDate) : that.operDate != null) return false;
         if (startDate != null ? !startDate.equals(that.startDate) : that.startDate != null) return false;
         if (endDate != null ? !endDate.equals(that.endDate) : that.endDate != null) return false;
@@ -92,20 +109,9 @@ public class StoreOperationEntity {
     @Override
     public int hashCode() {
         int result = (int) (seq ^ (seq >>> 32));
-        result = 31 * result + (int) (ownerSeq ^ (ownerSeq >>> 32));
         result = 31 * result + (operDate != null ? operDate.hashCode() : 0);
         result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
         result = 31 * result + (endDate != null ? endDate.hashCode() : 0);
         return result;
-    }
-
-    @Basic
-    @Column(name = "reserve_fund")
-    public int getReserveFund() {
-        return reserveFund;
-    }
-
-    public void setReserveFund(int reserveFund) {
-        this.reserveFund = reserveFund;
     }
 }

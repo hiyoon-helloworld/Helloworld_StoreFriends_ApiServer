@@ -24,7 +24,7 @@ public class UserPosEntity {
     private String macAddress;
     private String delYn;
     private Timestamp regdate;
-//    private long ownerSeq;
+//    private long rootSeq;
 
     @Id
     @Column(name = "seq")
@@ -36,16 +36,6 @@ public class UserPosEntity {
     public void setSeq(long seq) {
         this.seq = seq;
     }
-
-//    @Basic
-//    @Column(name = "manager_seq")
-//    public long getManagerSeq() {
-//        return managerSeq;
-//    }
-//
-//    public void setManagerSeq(long managerSeq) {
-//        this.managerSeq = managerSeq;
-//    }
 
     @Basic
     @Column(name = "type", columnDefinition = "CHAR(1)")
@@ -88,13 +78,25 @@ public class UserPosEntity {
     }
 
 //    @Basic
-//    @Column(name = "owner_seq")
-//    public long getOwnerSeq() {
-//        return ownerSeq;
+//    @Column(name = "manager_seq")
+//    public long getManagerSeq() {
+//        return managerSeq;
 //    }
 //
-//    public void setOwnerSeq(long ownerSeq) {
-//        this.ownerSeq = ownerSeq;
+//    public void setManagerSeq(long managerSeq) {
+//        this.managerSeq = managerSeq;
+//    }
+//
+//    private long rootSeq;
+//
+//    @Basic
+//    @Column(name = "root_seq")
+//    public long getRootSeq() {
+//        return rootSeq;
+//    }
+//
+//    public void setRootSeq(long rootSeq) {
+//        this.rootSeq = rootSeq;
 //    }
 
     @Override

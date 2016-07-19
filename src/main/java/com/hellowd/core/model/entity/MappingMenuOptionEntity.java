@@ -15,6 +15,8 @@ import javax.persistence.*;
 public class MappingMenuOptionEntity {
     private long seq;
     private String type;
+    private long menuSeq;
+    private long optionSeq;
 
     @Id
     @Column(name = "seq")
@@ -54,5 +56,25 @@ public class MappingMenuOptionEntity {
         int result = (int) (seq ^ (seq >>> 32));
         result = 31 * result + (type != null ? type.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "menu_seq")
+    public long getMenuSeq() {
+        return menuSeq;
+    }
+
+    public void setMenuSeq(long menuSeq) {
+        this.menuSeq = menuSeq;
+    }
+
+    @Basic
+    @Column(name = "option_seq")
+    public long getOptionSeq() {
+        return optionSeq;
+    }
+
+    public void setOptionSeq(long optionSeq) {
+        this.optionSeq = optionSeq;
     }
 }

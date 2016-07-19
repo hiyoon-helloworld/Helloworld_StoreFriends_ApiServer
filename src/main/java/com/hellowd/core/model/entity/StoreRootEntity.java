@@ -6,26 +6,19 @@ import java.sql.Timestamp;
 /**
  * Created by Helloworld
  * User : hiyoon
- * Date : 2016-07-11
- * Time : 오전 10:07
+ * Date : 2016-07-19
+ * Time : 오후 12:21
  * 해당 클래스에 대한 기능 설명
  */
 @MappedSuperclass
 //@Entity
-//@Table(name = "store_owner")
-public class StoreOwnerEntity {
+//@javax.persistence.Table(name = "store_root", schema = "sf_testbed", catalog = "")
+public class StoreRootEntity {
     private long seq;
-    private long sellerSeq;
-    private long managerSeq;
-    private String name;
-    private String sfVer;
-    private String status;
-    private String bizappUseYn;
-    private String delYn;
-    private Timestamp regdate;
 
     @Id
-    @Column(name = "seq")
+    @javax.persistence.Column(name = "seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getSeq() {
         return seq;
     }
@@ -34,8 +27,10 @@ public class StoreOwnerEntity {
         this.seq = seq;
     }
 
+    private long sellerSeq;
+
     @Basic
-    @Column(name = "seller_seq")
+    @javax.persistence.Column(name = "seller_seq")
     public long getSellerSeq() {
         return sellerSeq;
     }
@@ -44,8 +39,10 @@ public class StoreOwnerEntity {
         this.sellerSeq = sellerSeq;
     }
 
+    private long managerSeq;
+
     @Basic
-    @Column(name = "manager_seq")
+    @javax.persistence.Column(name = "manager_seq")
     public long getManagerSeq() {
         return managerSeq;
     }
@@ -54,8 +51,10 @@ public class StoreOwnerEntity {
         this.managerSeq = managerSeq;
     }
 
+    private String name;
+
     @Basic
-    @Column(name = "name")
+    @javax.persistence.Column(name = "name")
     public String getName() {
         return name;
     }
@@ -64,8 +63,10 @@ public class StoreOwnerEntity {
         this.name = name;
     }
 
+    private String sfVer;
+
     @Basic
-    @Column(name = "sf_ver")
+    @javax.persistence.Column(name = "sf_ver")
     public String getSfVer() {
         return sfVer;
     }
@@ -74,8 +75,10 @@ public class StoreOwnerEntity {
         this.sfVer = sfVer;
     }
 
+    private String status;
+
     @Basic
-    @Column(name = "status", columnDefinition = "CHAR(1)")
+    @javax.persistence.Column(name = "status", columnDefinition = "CHAR(1)")
     public String getStatus() {
         return status;
     }
@@ -84,8 +87,10 @@ public class StoreOwnerEntity {
         this.status = status;
     }
 
+    private String bizappUseYn;
+
     @Basic
-    @Column(name = "bizapp_use_yn", columnDefinition = "CHAR(1)")
+    @javax.persistence.Column(name = "bizapp_use_yn", columnDefinition = "CHAR(1)")
     public String getBizappUseYn() {
         return bizappUseYn;
     }
@@ -94,8 +99,10 @@ public class StoreOwnerEntity {
         this.bizappUseYn = bizappUseYn;
     }
 
+    private String delYn;
+
     @Basic
-    @Column(name = "del_yn", columnDefinition = "CHAR(1)")
+    @javax.persistence.Column(name = "del_yn", columnDefinition = "CHAR(1)")
     public String getDelYn() {
         return delYn;
     }
@@ -104,8 +111,10 @@ public class StoreOwnerEntity {
         this.delYn = delYn;
     }
 
+    private Timestamp regdate;
+
     @Basic
-    @Column(name = "regdate")
+    @javax.persistence.Column(name = "regdate")
     public Timestamp getRegdate() {
         return regdate;
     }
@@ -119,7 +128,7 @@ public class StoreOwnerEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        StoreOwnerEntity that = (StoreOwnerEntity) o;
+        StoreRootEntity that = (StoreRootEntity) o;
 
         if (seq != that.seq) return false;
         if (sellerSeq != that.sellerSeq) return false;

@@ -1,4 +1,4 @@
-package com.hellowd.core.model.http.res.userManager;
+package com.hellowd.core.model.http.res.user;
 
 import com.hellowd.core.model.entity.relation.UserEmployeeRelation;
 import com.hellowd.core.model.entity.relation.UserManagerRelation;
@@ -37,10 +37,10 @@ public class UserManagerRes extends ApiResult {
         super.setMessage(apiResult.getMessage());
 
         // User Manager 값을 셋팅합니다.
-        userManager = new UserManagerRelation();
-        userManager.setSeq(userManagerRelation.getSeq());
-        userManager.setId(userManagerRelation.getId());
-        userManager.setName(userManagerRelation.getName());
+        this.userManager = new UserManagerRelation();
+        this.userManager.setSeq(userManagerRelation.getSeq());
+        this.userManager.setId(userManagerRelation.getId());
+        this.userManager.setName(userManagerRelation.getName());
 
         // User Pos 값을 셋팅합니다.
         List<UserPosRelation> userPosList = new ArrayList<>();
@@ -48,13 +48,11 @@ public class UserManagerRes extends ApiResult {
         for (UserPosRelation userPosRelation : userPorRelationList) {
             UserPosRelation userPos = new UserPosRelation();
             userPos.setSeq(userPosRelation.getSeq());
-//            userPos.setOwnerSeq(userPosRelation.getOwnerSeq());
-//            userPos.setManagerSeq(userPosRelation.getManagerSeq());
             userPos.setType(userPosRelation.getType());
             userPos.setMacAddress(userPosRelation.getMacAddress());
             userPosList.add(userPos);
         }
-        userManager.setUserPosList(userPosList);
+        this.userManager.setUserPosList(userPosList);
 
         // User Employee 값을 셋팅합니다.
         List<UserEmployeeRelation> userEmployeeList = new ArrayList<>();
@@ -62,12 +60,11 @@ public class UserManagerRes extends ApiResult {
         for (UserEmployeeRelation userEmployeeRelation : userEmployeeRelationList) {
             UserEmployeeRelation userEmployee = new UserEmployeeRelation();
             userEmployee.setSeq(userEmployeeRelation.getSeq());
-//            userEmployee.setManagerSeq(userEmployeeRelation.getManagerSeq());
             userEmployee.setName(userEmployeeRelation.getName());
             userEmployee.setType(userEmployeeRelation.getType());
             userEmployeeList.add(userEmployee);
         }
-        userManager.setUserEmployeeList(userEmployeeList);
+        this.userManager.setUserEmployeeList(userEmployeeList);
     }
 
 }

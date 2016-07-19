@@ -1,4 +1,4 @@
-package com.hellowd.core.model.http.req.storeOperation;
+package com.hellowd.core.model.http.req.store;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -19,7 +19,7 @@ public class StoreOperationReq {
      * 가맹점주 SEQ
      */
     @NotNull
-    private Long ownerSeq;
+    private Long rootSeq;
 
     /**
      * 준비금

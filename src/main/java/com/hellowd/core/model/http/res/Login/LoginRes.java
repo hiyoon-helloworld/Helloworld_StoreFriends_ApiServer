@@ -1,4 +1,4 @@
-package com.hellowd.core.model.http.res.Login;
+package com.hellowd.core.model.http.res.login;
 
 import com.hellowd.core.model.http.common.ApiResult;
 import lombok.AllArgsConstructor;

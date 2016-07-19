@@ -57,4 +57,45 @@ public class HttpStatusType {
             return new ApiResult(this == OK ? true : false, getStatus(), getMessage());
         }
     }
+
+    /**
+     * 비밀번호 재발급 STATUS TYPE.
+     */
+    public enum PASSWORD_STATUS_TYPE {
+
+        OK(200), CANNOT_FIND_ID(10100), FAIL_SMS(10101); // ENUM
+        private int status; // 상태값
+        PASSWORD_STATUS_TYPE(int status) {this.status = status;} // 생성자
+
+        public int getStatus() {
+            return this.status;
+        }
+
+        /**
+         * 해당 코드에 맞는 메시지를 반환합니다.
+         * @return
+         */
+        public String getMessage() {
+            String message = "";
+            switch (status) {
+                case 200:
+                    message = "정상처리";
+                    break;
+                case 10100:
+                    message = "아이디를 찾을 수 없습니다.";
+                    break;
+                case 10101:
+                    message = "문자전송에 실패했습니다.";
+                    break;
+                default:
+                    message = "";
+                    break;
+            }
+            return message;
+        }
+
+        public ApiResult getApiResult() {
+            return new ApiResult(this == OK ? true : false, getStatus(), getMessage());
+        }
+    }
 }

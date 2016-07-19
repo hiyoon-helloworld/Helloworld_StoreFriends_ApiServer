@@ -1,10 +1,8 @@
 package com.hellowd.controller.store;
 
 import com.hellowd.core.exception.InvalidParameterException;
-import com.hellowd.core.model.entity.relation.UserManagerRelation;
 import com.hellowd.core.model.http.common.ApiResult;
-import com.hellowd.core.model.http.req.storeOperation.StoreOperationReq;
-import com.hellowd.core.model.http.res.userManager.UserManagerRes;
+import com.hellowd.core.model.http.req.store.StoreOperationReq;
 import com.hellowd.core.model.type.HttpStatusType;
 import com.hellowd.core.utils.ErrorUtils;
 import com.hellowd.service.store.StoreOperationService;
@@ -15,7 +13,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 /**
  * Created by Helloworld
@@ -46,17 +43,17 @@ public class StoreOperationController {
     @ApiOperation(value = "영업종료", notes = "영업종료(담당자로그아웃)합니다.", code = 200)
     @RequestMapping(path = "closeStore", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ApiResult closeStore(@RequestParam("ownerSeq") final long ownerSeq) {
-        HttpStatusType.OPERATION_STATUS_TYPE operationStatusType = storeOperationService.closeStore(ownerSeq);
+    public ApiResult closeStore(@RequestParam("rootSeq") final long rootSeq) {
+        HttpStatusType.OPERATION_STATUS_TYPE operationStatusType = storeOperationService.closeStore(rootSeq);
         return operationStatusType.getApiResult();
     }
 
     @ApiOperation(value = "영업종료취소", notes = "영업종료를 취소합니다.", code = 200)
     @RequestMapping(path = "cancelCloseStore", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ApiResult cancelCloseStore(@RequestParam("ownerSeq") final long ownerSeq,
+    public ApiResult cancelCloseStore(@RequestParam("rootSeq") final long rootSeq,
                                 @RequestParam("userSeq") final long userSeq) {
-        HttpStatusType.OPERATION_STATUS_TYPE operationStatusType = storeOperationService.cancelCloseStore(ownerSeq, userSeq);
+        HttpStatusType.OPERATION_STATUS_TYPE operationStatusType = storeOperationService.cancelCloseStore(rootSeq, userSeq);
         return operationStatusType.getApiResult();
     }
 
